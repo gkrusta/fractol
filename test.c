@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 00:40:08 by W2Wizard          #+#    #+#             */
-/*   Updated: 2023/07/25 13:30:19 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/07/25 15:18:49 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	hook(void *param)
 	if (mlx_is_key_down(param, MLX_KEY_ESCAPE))
 		mlx_close_window(param);
 	if (mlx_is_key_down(param, MLX_KEY_UP))
-		g_img->instances[0].y -= 5;
+		g_img->instances[0].y -= 2;
 	if (mlx_is_key_down(param, MLX_KEY_DOWN))
 		g_img->instances[0].y += 5;
 	if (mlx_is_key_down(param, MLX_KEY_LEFT))
-		g_img->instances[0].x -= 5;
+		g_img->instances[0].x -= 2;
 	if (mlx_is_key_down(param, MLX_KEY_RIGHT))
 		g_img->instances[0].x += 5;
 }
@@ -44,14 +44,7 @@ void my_scrollhook(double xdelta, double ydelta, void* param)
 		puts("Up!");
 	else if (ydelta < 0)
 		puts("Down!");
-	
-	// Can also detect a mousewheel that go along the X (e.g: MX Master 3)
-	if (xdelta < 0)
-		puts("Sliiiide to the left!");
-	else if (xdelta > 0)
-		puts("Sliiiide to the right!");
-/* 	fflush(stdout); // Flush the output buffer to print the messages immediatel
- */}
+}
 
 int32_t	main(void)
 {
