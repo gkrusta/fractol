@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:23:28 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/07/26 15:39:24 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/07/26 15:46:48 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ double	ft_calculate_c_imag(int y)
 	c_imag = 3.0 * y / (HEIGHT - 1);
 	return (-2.0 + c_imag);
 }
+
+// iaterate through every x and y pixel cordinates and find the corresponding c_imag and c_real
 
 /* calculate how many iterations it takes for the Mandelbrot fractal
 function to escape the bounded region*/
