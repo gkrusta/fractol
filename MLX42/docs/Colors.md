@@ -12,8 +12,8 @@ Colors are commonly represented as `4-byte` integers. This 4-byte integer is a g
 Channel | Description   | RGBA representation
 :------:|:-------------:|:-------------------:
 `R`     | Red Channel   | `0xFF000000`
-`G`     | Blue Channel  | `0x00FF0000`
-`B`     | Green Channel | `0x0000FF00`
+`G`     | GREEN Channel | `0x00FF0000`
+`B`     | BLUE Channel  | `0x0000FF00`
 `A`     | Alpha Channel | `0x000000FF`
 
 Combining these four channel values into one will result in a non-transparent, white color.

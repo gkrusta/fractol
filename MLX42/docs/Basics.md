@@ -114,7 +114,7 @@ int32_t	main(void)
 
 	// MLX allows you to define its core behaviour before startup.
 	mlx_set_setting(MLX_MAXIMIZED, true);
-	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);
+	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "MANDELBORT>(", true);
 	if (!mlx)
 		ft_error();
 

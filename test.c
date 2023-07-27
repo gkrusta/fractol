@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 00:40:08 by W2Wizard          #+#    #+#             */
-/*   Updated: 2023/07/26 11:18:39 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/07/27 15:45:37 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ void	hook(void *param)
 		g_img->instances[0].x += 5;
 }
 
-void my_scrollhook(double xdelta, double ydelta, void* param)
+/* void my_scrollhook(double xdelta, double ydelta, void* param)
 {
 	// Simple up or down detection.
 	if (ydelta > 0)
 		puts("Up!");
 	else if (ydelta < 0)
 		puts("Down!");
-}
+} */
 
 int32_t	main(void)
 {
@@ -53,10 +53,10 @@ int32_t	main(void)
 	mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
 	if (!mlx)
 		exit(EXIT_FAILURE);
-	mlx_scroll_hook(mlx, &my_scrollhook, NULL); // for scroll
+	/* mlx_scroll_hook(mlx, &my_scrollhook, NULL); */
 	g_img = mlx_new_image(mlx, 128, 128);
 	memset(g_img->pixels, 255, g_img->width * g_img->height * sizeof(int));
-	mlx_image_to_window(mlx, g_img, 5, 50);
+	mlx_image_to_window(mlx, g_img, 0, 0);
 	mlx_loop_hook(mlx, &hook, mlx);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
