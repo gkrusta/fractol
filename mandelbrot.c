@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:23:28 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/07/27 18:02:54 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/07/28 14:01:44 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <memory.h>
-#define WIDTH 200
-#define HEIGHT 200
+#define WIDTH 250
+#define HEIGHT 250
 
-mlx_image_t	*g_img;
+/* mlx_image_t	*img; */
 
-void	hook(void *param)
+/* void	hook(void *param)
 {
 	mlx_t	*mlx;
 
@@ -28,24 +28,24 @@ void	hook(void *param)
 	if (mlx_is_key_down(param, MLX_KEY_ESCAPE))
 		mlx_close_window(param);
 	if (mlx_is_key_down(param, MLX_KEY_UP))
-		g_img->instances[0].y -= 2;
+		img->instances[0].y -= 2;
 	if (mlx_is_key_down(param, MLX_KEY_DOWN))
-		g_img->instances[0].y += 5;
+		img->instances[0].y += 5;
 	if (mlx_is_key_down(param, MLX_KEY_LEFT))
-		g_img->instances[0].x -= 2;
+		img->instances[0].x -= 2;
 	if (mlx_is_key_down(param, MLX_KEY_RIGHT))
-		g_img->instances[0].x += 5;
-}
+		img->instances[0].x += 5;
+} */
 
-double	ft_calculate_c_real(int x)
+double	ft_calculate_c_real(double x)
 {
 	double	c_real;
 
 	c_real = 3.0 * x / (WIDTH - 1);
-	return (-.5 + c_real);
+	return (-1.5 + c_real);
 }
 
-double	ft_calculate_c_imag(int y)
+double	ft_calculate_c_imag(double y)
 {
 	double	c_imag;
 
@@ -69,17 +69,17 @@ uint32_t	calculate_color(int iter)
 	r = 0;
 	g = 0;
 	b = 0;
-	if (iter <= 10)
+	if (iter <= 30)
 		r = 255;
-	else if (iter <= 20)
+	else if (iter <= 60)
 		g = 255;
-	else if (iter <= 38)
+	else if (iter <= 98)
 		b = 255;
 	else
 	{
-		r = 255;
-		g = 255;
-		b = 255;
+		r = 0;
+		g = 0;
+		b = 0;
 	}
 	color = r << 16 | g << 8 | b;
 	return (color);
@@ -97,13 +97,17 @@ int	ft_calculate_iterations(double c_real, double c_imag)
 	iter = 0;
 	z_real = 0;
 	z_imag = 0;
-	while (iter < 40) // how far to go?
+	while (iter < 100) // how far to go?
 	{
 		z_real = (z_real - z_imag) * (z_real + z_imag) + c_real; //  the real part: 2xyi + c_real 
 		z_imag = 2 * z_real * z_imag + c_imag; //  the imaginary part: x^2 - y^2 + c_imag
 		/* z_abs = z_real + z_imag; */ // the abosulute: z = x^2 + 2xyi - y^2 + c
-		if (z_real > 2 || z_imag > 3)
-			break ;
+/* 		printf("z real is %f and z imginry is %f\n", z_real, z_imag);
+ */		if ((z_real * z_real + z_imag * z_imag) >= 4.0 /* || z_imag > 3 */)
+		{
+/* 			printf("we broke out!\n");
+ */			break ;
+		}
 		iter++;
 	}
 	return (iter);
@@ -114,19 +118,18 @@ int32_t	main(void)
 {
 	double		c_real;
 	double		c_imag;
-	int32_t		y;
-	int32_t		x;
+	double		y;
+	double		x;
 	int			iterations;
 	uint32_t	color;
 	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "MANDELBORT>(", true);
-
-	mlx_set_setting(MLX_MAXIMIZED, true);
 	if (!mlx)
 		exit(EXIT_FAILURE);
-	mlx_image_t* img = mlx_new_image(mlx, 256, 256);
+	mlx_image_t* img = mlx_new_image(mlx, 250, 250);
 	/* Do stuff */
 	y = 0;
-	while (y < HEIGHT)
+/* 			memset(img->pixels, 255, img->width * img->height * sizeof(int));
+ */	while (y < HEIGHT)
 	{
 		x = 0;
 		while (x < WIDTH)
@@ -137,8 +140,7 @@ int32_t	main(void)
 			/* printf("iterations: %d\n", iterations); */
 			color = calculate_color(iterations);
 			/* printf("color is %d\n\n", color); */
-			memset(img->pixels, color, x * y * sizeof(int));
-			/* mlx_put_pixel(img, x, y, color); */
+			mlx_put_pixel(img, x, y, color * x);
 			x++;
 		}
 		y++;
@@ -146,10 +148,10 @@ int32_t	main(void)
 	// Create and display the image.
 	// Register a hook and pass mlx as an optional param.
 	// NOTE: Do this before calling mlx_loop!
-	mlx_loop_hook(mlx, &hook, mlx);
-	mlx_loop(mlx);
+	/* mlx_loop_hook(mlx, &hook, mlx); */
+	/* mlx_loop(mlx); */
+	mlx_image_to_window(mlx, img, 0, 0);
 	mlx_terminate(mlx);
-	mlx_close_window(mlx);
 	return (EXIT_SUCCESS);
 }
 
