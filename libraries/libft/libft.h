@@ -6,19 +6,25 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:21:13 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/05/01 17:36:36 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/07/20 14:23:43 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-/* Libraries used */
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
 
+/* Libraries used */
 # include <stdlib.h>
 # include <string.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <stdarg.h>
+# include <fcntl.h>
+# include <stddef.h>
 
 /* functions from <stdlib.h> */
 int		ft_atoi(const char	*str);
@@ -65,19 +71,41 @@ void	ft_putnbr_fd(int n, int fd);
 /* bonus functions */
 typedef struct s_list
 {
-	void			*content;
+	int				value;
+	int				index;
 	struct s_list	*next;
 }					t_list;
 
-t_list	*ft_lstnew(void *content);
-void	ft_lstadd_front(t_list **lst, t_list *new);
-void	ft_lstadd_front(t_list **lst, t_list *new);
+t_list	*ft_lstnew(int value);
+void	ft_lstadd_front(t_list **lst, t_list *new_node);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
-void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_lstdelone(t_list *lst, void (*del)(void*));
-void	ft_lstclear(t_list **lst, void (*del)(void*));
-void	ft_lstiter(t_list *lst, void (*f)(void *));
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+void	ft_lstadd_back(t_list **lst, t_list *new_node);
+
+/* functions for printf */
+int		ft_putchar(char c);
+int		ft_putstr(char *str);
+int		ft_decimal(long n);
+int		ft_us_decimal(unsigned int n);
+int		ft_hexadec(unsigned long long n, char c);
+int		ft_void_ptr(unsigned long long n);
+int		ft_printf(char const *str, ...);
+
+/* get next line */
+/* utils used */
+int		ft_strchr_gnl(const char *str, int c);
+int		ft_line_len(char *str);
+int		ft_strchr_gnl(const char *str, int c);
+
+/* get_next_line file functions */
+char	*get_next_line(int fd);
+char	*ft_find_char(int fd, char *str_ac);
+char	*ft_concat_free(char *str_ac, char *temp);
+char	*ft_get_line(char *str_ac);
+char	*ft_clear_memory(char *str_ac);
+
+/* functions added for push_swap */
+long	ft_long_atoi(const char	*str);
+int		ft_strcmp(const char *s1, const char *s2);
 
 #endif

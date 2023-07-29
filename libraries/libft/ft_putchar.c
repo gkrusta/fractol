@@ -1,35 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/28 12:45:05 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/07/29 16:57:47 by gkrusta          ###   ########.fr       */
+/*   Created: 2023/05/02 16:14:44 by gkrusta           #+#    #+#             */
+/*   Updated: 2023/07/13 17:26:33 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include "libft.h"
 
-#define WIDTH 128
-#define HEIGHT 128
-
-# include "libraries/MLX42/include/MLX42/MLX42.h"
-# include <stdio.h>
-# include <math.h>
-# include <pthread.h>
-# include "libraries/libft/libft.h"
-
-typedef struct s_fractol {
-	void	*init;
-	void	*wdw;
-	double	c_real;
-	double	c_imag;
-	double	y;
-	double	x;
-	int		iterations;
-}	t_fractol;
-
-#endif
+int	ft_putchar(char c)
+{
+	write (1, &c, 1);
+	return (1);
+}

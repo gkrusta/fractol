@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/28 12:45:05 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/07/29 16:57:47 by gkrusta          ###   ########.fr       */
+/*   Created: 2023/07/29 15:48:59 by gkrusta           #+#    #+#             */
+/*   Updated: 2023/07/29 16:56:53 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include "fractol.h"
 
-#define WIDTH 128
-#define HEIGHT 128
+void	ft_struct(t_fractal *fractal)
+{
+	
+}
 
-# include "libraries/MLX42/include/MLX42/MLX42.h"
-# include <stdio.h>
-# include <math.h>
-# include <pthread.h>
-# include "libraries/libft/libft.h"
+int	main(int argc, char **argv)
+{
+	t_fractol	*ft;
 
-typedef struct s_fractol {
-	void	*init;
-	void	*wdw;
-	double	c_real;
-	double	c_imag;
-	double	y;
-	double	x;
-	int		iterations;
-}	t_fractol;
-
-#endif
+	ft->init = mlx_init(void);
+	ft->wdw = mlx_new_window(ft->init, HEIGHT, WIDTH, "mandelbrot>>>");
+}

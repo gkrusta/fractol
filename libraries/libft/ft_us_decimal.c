@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_us_decimal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 13:30:16 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/05/01 14:04:34 by gkrusta          ###   ########.fr       */
+/*   Created: 2023/05/03 15:51:47 by gkrusta           #+#    #+#             */
+/*   Updated: 2023/07/13 17:27:09 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+int	ft_us_decimal(unsigned int n)
 {
-	t_list	*new_list;
-	t_list	*ptr;
+	int	i;
 
-	new_list = 0;
-	while (lst)
+	i = 0;
+	if (n < 10)
 	{
-		ptr = ft_lstnew(f(lst->content));
-		if (ptr)
-		{
-			ft_lstadd_back(&new_list, ptr);
-			lst = lst->next;
-		}
-		else
-		{
-			ft_lstclear(&new_list, del);
-			return (NULL);
-		}
+		ft_putchar(n + '0');
+		i++;
 	}
-	return (new_list);
+	else
+	{
+		i++;
+		i += ft_us_decimal(n / 10);
+		ft_putchar(n % 10 + '0');
+	}
+	return (i);
 }

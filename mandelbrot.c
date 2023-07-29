@@ -6,17 +6,17 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:23:28 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/07/29 12:35:35 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/07/29 14:17:30 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MLX42/include/MLX42/MLX42.h"
+#include "libraries/MLX42/include/MLX42/MLX42.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <memory.h>
-#define WIDTH 250
-#define HEIGHT 250
+#define WIDTH 20
+#define HEIGHT 20
 
 /* mlx_image_t	*img; */
 
@@ -69,11 +69,11 @@ uint32_t	calculate_color(int iter)
 	r = 0;
 	g = 0;
 	b = 0;
-	if (iter <= 30)
+	if (iter <= 3)
 		r = 255;
-	else if (iter <= 60)
+	else if (iter <= 6)
 		g = 255;
-	else if (iter <= 98)
+	else if (iter <= 9)
 		b = 255;
 	else
 	{
@@ -89,7 +89,6 @@ uint32_t	calculate_color(int iter)
 function to escape the bounded region*/
 int	ft_calculate_iterations(double c_real, double c_imag)
 {
-	double	z_abs;
 	double	z_real;
 	double	z_imag;
 	int		iter;
@@ -97,16 +96,15 @@ int	ft_calculate_iterations(double c_real, double c_imag)
 	iter = 0;
 	z_real = 0;
 	z_imag = 0;
-	while (iter < 100) // how far to go?
+	while (iter < 10) // how far to go?
 	{
-		z_real = (z_real - z_imag) * (z_real + z_imag) + c_real; //  the real part: 2xyi + c_real 
-		z_imag = 2 * z_real * z_imag + c_imag; //  the imaginary part: x^2 - y^2 + c_imag
-		/* z_abs = z_real + z_imag; */ // the abosulute: z = x^2 + 2xyi - y^2 + c
-/* 		printf("z real is %f and z imginry is %f\n", z_real, z_imag);
- */		if ((z_real * z_real + z_imag * z_imag) >= 4.0 /* || z_imag > 3 */)
+		z_real = (z_real - z_imag) * (z_real + z_imag) + c_real; //  the real part: x^2 - y^2 + c_imag 
+		z_imag = 2 * z_real * z_imag + c_imag; //  the imaginary part: 2xyi + c_real 
+		printf("z real is %f and z imginry is %f\n", z_real, z_imag);
+		if ((z_real * z_real + z_imag * z_imag) >= 2.0 /* || z_imag > 3 */)
 		{
-/* 			printf("we broke out!\n");
- */			break ;
+			printf("we broke out!\n");
+			break ;
 		}
 		iter++;
 	}
@@ -125,7 +123,7 @@ int32_t	main(void)
 	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "MANDELBORT>(", true);
 	if (!mlx)
 		exit(EXIT_FAILURE);
-	mlx_image_t* img = mlx_new_image(mlx, 250, 250);
+	mlx_image_t* img = mlx_new_image(mlx, 20, 20);
 	/* Do stuff */
 	y = 0;
 /* 			memset(img->pixels, 255, img->width * img->height * sizeof(int));
@@ -137,9 +135,9 @@ int32_t	main(void)
 			c_real = ft_calculate_c_real(x); // coresponding c number: c_real
 			c_imag = ft_calculate_c_imag(y); // coresponding c nu,ber: c_imag * i
 			iterations = ft_calculate_iterations(c_real, c_imag); // calculate iterations 
-			/* printf("iterations: %d\n", iterations); */
+			printf("iterations: %d\n", iterations);
 			color = calculate_color(iterations);
-			/* printf("color is %d\n\n", color); */
+			printf("color is %d\n\n", color);
 			mlx_put_pixel(img, x, y, color);
 			x++;
 		}

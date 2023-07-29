@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_hexadec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 12:01:21 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/05/01 17:39:05 by gkrusta          ###   ########.fr       */
+/*   Created: 2023/05/03 16:15:44 by gkrusta           #+#    #+#             */
+/*   Updated: 2023/07/13 17:25:31 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+int	ft_hexadec(unsigned long long n, char c)
 {
-	t_list	*ptr_tofree;
+	unsigned int	i;
 
-	if (lst && del)
+	i = 0;
+	if (n < 16)
 	{
-		del(lst->content);
-		ptr_tofree = lst;
-		lst = ptr_tofree->next;
-		free (ptr_tofree);
-		lst = 0;
+		if (c == 'x')
+			i += ft_putchar("0123456789abcdef"[n % 16]);
+		else
+			i += ft_putchar("0123456789ABCDEF"[n % 16]);
 	}
+	else
+	{
+		i += ft_hexadec(n / 16, c);
+		if (c == 'x')
+			i += ft_putchar("0123456789abcdef"[n % 16]);
+		else
+			i += ft_putchar("0123456789ABCDEF"[n % 16]);
+	}
+	return (i);
 }

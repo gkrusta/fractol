@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/28 12:45:05 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/07/29 16:57:47 by gkrusta          ###   ########.fr       */
+/*   Created: 2023/05/07 18:50:59 by gkrusta           #+#    #+#             */
+/*   Updated: 2023/07/16 19:23:57 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include "libft.h"
 
-#define WIDTH 128
-#define HEIGHT 128
+int	ft_strchr_gnl(const char *str, int c)
+{
+	int	i;
 
-# include "libraries/MLX42/include/MLX42/MLX42.h"
-# include <stdio.h>
-# include <math.h>
-# include <pthread.h>
-# include "libraries/libft/libft.h"
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
-typedef struct s_fractol {
-	void	*init;
-	void	*wdw;
-	double	c_real;
-	double	c_imag;
-	double	y;
-	double	x;
-	int		iterations;
-}	t_fractol;
+int	ft_line_len(char *str)
+{
+	int	i;
 
-#endif
+	i = 0;
+	while (str[i] && str[i] != '\n')
+		i++;
+	if (str[i] == '\n')
+		i++;
+	return (i);
+}
