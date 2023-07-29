@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:23:28 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/07/28 14:01:44 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/07/29 12:35:35 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ int32_t	main(void)
 			/* printf("iterations: %d\n", iterations); */
 			color = calculate_color(iterations);
 			/* printf("color is %d\n\n", color); */
-			mlx_put_pixel(img, x, y, color * x);
+			mlx_put_pixel(img, x, y, color);
 			x++;
 		}
 		y++;
