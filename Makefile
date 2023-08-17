@@ -6,7 +6,7 @@
 #    By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/29 12:00:43 by gkrusta           #+#    #+#              #
-#    Updated: 2023/08/17 12:24:36 by gkrusta          ###   ########.fr        #
+#    Updated: 2023/08/17 18:34:11 by gkrusta          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRCS =  $(wildcard *.c)
 OBJS = $(SRCS:.c=.o)
 
 default: all
-	./fractol
+	@ echo "\033[32mExecuted Fractol...\n"
+	@ ./fractol
 
 all: $(LIBFT) $(MLX42) $(NAME) 
 

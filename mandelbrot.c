@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:23:28 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/17 14:14:59 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/17 18:30:48 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,15 @@ uint32_t	calculate_color(int iter)
 	b = 0;
 	if (iter <= 3)
 		r = 255;
-	else if (iter <= 6)
+	else if (iter <= 10)
 		g = 255;
-	else if (iter <= 9)
+	else if (iter <= 32)
 		b = 255;
 	else
 	{
-		r = 0;
-		g = 0;
-		b = 0;
+		r = 100;
+		g = 76;
+		b = 34;
 	}
 	color = get_rgba(r, g, b, 255);
 	return (color);
@@ -78,15 +78,17 @@ int	ft_calculate_iterations(double c_real, double c_imag)
 {
 	double	z_real;
 	double	z_imag;
+	double	z_real_temp;
 	int		iter;
 
 	iter = 0;
 	z_real = 0;
 	z_imag = 0;
-	while (iter < 10) // how far to go?
+	while (iter < 42) // how far to go?
 	{
+		z_real_temp = z_real;
 		z_real = (z_real - z_imag) * (z_real + z_imag) + c_real; //  the real part: x^2 - y^2 + c_imag 
-		z_imag = 2 * z_real * z_imag + c_imag; //  the imaginary part: 2xyi + c_real 
+		z_imag = 2 * z_real_temp * z_imag + c_imag; //  the imaginary part: 2xyi + c_real 
 		if ((z_real * z_real + z_imag * z_imag) >= 4.0 /* || z_imag > 3 */)
 		{
 			/* printf("we broke out!\n"); */
@@ -97,7 +99,7 @@ int	ft_calculate_iterations(double c_real, double c_imag)
 	return (iter);
 }
 
-int ft_calculate_iterations(double c_real, double c_imag, int max_iter)
+/* int ft_calculate_iterations(double c_real, double c_imag, int max_iter)
 {
     double z_real = 0;
     double z_imag = 0;
@@ -118,7 +120,7 @@ int ft_calculate_iterations(double c_real, double c_imag, int max_iter)
     }
 
     return iter;
-}
+} */
 
 
 // iterate through every x and y pixel cordinates and find the corresponding c_imag and c_real
@@ -144,22 +146,19 @@ int32_t	main(void)
 		while (x < WIDTH)
 		{
 			c_real = ft_calculate_c_real(x); // coresponding c number: c_real
-			c_imag = ft_calculate_c_imag(y); // coresponding c nu,ber: c_imag * i
+			c_imag = ft_calculate_c_imag(y); // coresponding c number: c_imag * i
 			iterations = ft_calculate_iterations(c_real, c_imag); // calculate iterations 
 /* 			printf("iterations: %d\n", iterations);
  */			//color = calculate_color(iterations);
-			if (iterations >= 10)
+			if (iterations >= 42)
 				color = get_rgba(0,0,0,255);
 			else
-				color = get_rgba(255,0,0,255);
+				color = calculate_color(iterations);
 			mlx_put_pixel(img, x, y, color);
 			x++;
 		}
 		y++;
 	} 
-	// Create and display the image.
-	// Register a hook and pass mlx as an optional param.
-	// NOTE: Do this before calling mlx_loop!
 	mlx_loop_hook(mlx, &hook, mlx);
 	mlx_loop(mlx); 
 	mlx_delete_image(mlx, img);
