@@ -6,36 +6,23 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:23:28 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/07/29 14:17:30 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/17 12:42:28 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libraries/MLX42/include/MLX42/MLX42.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <memory.h>
-#define WIDTH 20
-#define HEIGHT 20
+#include "fractol.h"
+
 
 /* mlx_image_t	*img; */
 
-/* void	hook(void *param)
+void	hook(void *param)
 {
 	mlx_t	*mlx;
 
 	mlx = param;
 	if (mlx_is_key_down(param, MLX_KEY_ESCAPE))
 		mlx_close_window(param);
-	if (mlx_is_key_down(param, MLX_KEY_UP))
-		img->instances[0].y -= 2;
-	if (mlx_is_key_down(param, MLX_KEY_DOWN))
-		img->instances[0].y += 5;
-	if (mlx_is_key_down(param, MLX_KEY_LEFT))
-		img->instances[0].x -= 2;
-	if (mlx_is_key_down(param, MLX_KEY_RIGHT))
-		img->instances[0].x += 5;
-} */
+}
 
 double	ft_calculate_c_real(double x)
 {
@@ -62,7 +49,7 @@ int	get_rgba(int r, int g, int b, int a)
 uint32_t	calculate_color(int iter)
 {
 	uint32_t	color;
-	int	r;
+/* 	int	r;
 	int	g;
 	int	b;
 
@@ -81,7 +68,11 @@ uint32_t	calculate_color(int iter)
 		g = 0;
 		b = 0;
 	}
-	color = r << 16 | g << 8 | b;
+	color = r << 16 | g << 8 | b; */
+	if (iter == 10)
+		color = get_rgba(0, 0, 0, 255);
+	else
+		color = get_rgba(255, 0, 0, 255);
 	return (color);
 }
 
@@ -120,14 +111,15 @@ int32_t	main(void)
 	double		x;
 	int			iterations;
 	uint32_t	color;
-	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "MANDELBORT>(", true);
+	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "MANDELBORT>(", false);
 	if (!mlx)
 		exit(EXIT_FAILURE);
-	mlx_image_t* img = mlx_new_image(mlx, 20, 20);
-	/* Do stuff */
+	mlx_image_t* img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	if (!img)
+		exit(EXIT_FAILURE);
+	mlx_image_to_window(mlx, img, 0, 0);
 	y = 0;
-/* 			memset(img->pixels, 255, img->width * img->height * sizeof(int));
- */	while (y < HEIGHT)
+	while (y < HEIGHT)
 	{
 		x = 0;
 		while (x < WIDTH)
@@ -146,9 +138,9 @@ int32_t	main(void)
 	// Create and display the image.
 	// Register a hook and pass mlx as an optional param.
 	// NOTE: Do this before calling mlx_loop!
-	/* mlx_loop_hook(mlx, &hook, mlx); */
-	/* mlx_loop(mlx); */
-	mlx_image_to_window(mlx, img, 0, 0);
+	mlx_loop_hook(mlx, &hook, mlx);
+	mlx_loop(mlx); 
+	mlx_delete_image(mlx, img);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
 }

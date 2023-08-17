@@ -6,21 +6,22 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 12:45:05 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/07/29 16:57:47 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/17 12:50:32 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-
-#define WIDTH 128
-#define HEIGHT 128
-
-# include "libraries/MLX42/include/MLX42/MLX42.h"
+# include "../libraries/MLX42/include/MLX42/MLX42.h"
+# include "../libraries/libft/libft.h"
 # include <stdio.h>
+#include <unistd.h>
 # include <math.h>
 # include <pthread.h>
-# include "libraries/libft/libft.h"
+#include <memory.h>
+#define WIDTH 600
+#define HEIGHT 600å
+
 
 typedef struct s_fractol {
 	void	*init;

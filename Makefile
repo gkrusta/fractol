@@ -6,7 +6,7 @@
 #    By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/29 12:00:43 by gkrusta           #+#    #+#              #
-#    Updated: 2023/07/29 13:58:30 by gkrusta          ###   ########.fr        #
+#    Updated: 2023/08/17 12:24:36 by gkrusta          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,26 +16,28 @@ FLAGS = -Wall -Wextra -Werror -g
 
 LIBFT_PATH = libraries/libft/
 LIBFT = $(LIBFT_PATH)/libft.a
+HEADERS = -I ./inc -I ./libraries/MLX42/include/MLX42 -I ./libraries/libft
 
 MLX42_PATH = libraries/MLX42/
 MLX42 = $(MLX42_PATH)/libmlx42.a
 
-SRCS =  mandelbrot.c
+SRCS =  $(wildcard *.c)
 
 OBJS = $(SRCS:.c=.o)
 
+default: all
+	./fractol
 
-all: $(NAME)
+all: $(LIBFT) $(MLX42) $(NAME) 
 
-$(NAME): $(OBJS) $(LIBFT) $(MLX42)
+$(NAME): $(OBJS)
 	@ echo "\033[32mCompiling Fractol...\n"
-	@ make -C libraries/libft/ all
-	@ make -C libraries/MLX42/ all
-	@$(CC) $(FLAGS) -o $@ $^ -L$(LIBFT_PATH) -lft -L$(MLX42_PATH) -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/"
+	@$(CC)  $(FLAGS) $(OBJS) $(MLX42) $(LIBFT) -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/" $(HEADERS) -o $@
 	@ echo "\n\t\t\033[32mCompiled!\n"
 
+
 %.o: %.c
-	@$(CC) $(FLAGS) -c $< -o $@
+	@$(CC) $(FLAGS) -c $< -o $@ $(HEADERS)
 
 $(LIBFT):
 	@ make -C $(LIBFT_PATH)
