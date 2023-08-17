@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:23:28 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/17 12:42:28 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/17 14:14:59 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	get_rgba(int r, int g, int b, int a)
 uint32_t	calculate_color(int iter)
 {
 	uint32_t	color;
-/* 	int	r;
+	int	r;
 	int	g;
 	int	b;
 
@@ -68,11 +68,7 @@ uint32_t	calculate_color(int iter)
 		g = 0;
 		b = 0;
 	}
-	color = r << 16 | g << 8 | b; */
-	if (iter == 10)
-		color = get_rgba(0, 0, 0, 255);
-	else
-		color = get_rgba(255, 0, 0, 255);
+	color = get_rgba(r, g, b, 255);
 	return (color);
 }
 
@@ -91,16 +87,39 @@ int	ft_calculate_iterations(double c_real, double c_imag)
 	{
 		z_real = (z_real - z_imag) * (z_real + z_imag) + c_real; //  the real part: x^2 - y^2 + c_imag 
 		z_imag = 2 * z_real * z_imag + c_imag; //  the imaginary part: 2xyi + c_real 
-		printf("z real is %f and z imginry is %f\n", z_real, z_imag);
-		if ((z_real * z_real + z_imag * z_imag) >= 2.0 /* || z_imag > 3 */)
+		if ((z_real * z_real + z_imag * z_imag) >= 4.0 /* || z_imag > 3 */)
 		{
-			printf("we broke out!\n");
+			/* printf("we broke out!\n"); */
 			break ;
 		}
 		iter++;
 	}
 	return (iter);
 }
+
+int ft_calculate_iterations(double c_real, double c_imag, int max_iter)
+{
+    double z_real = 0;
+    double z_imag = 0;
+    int iter = 0;
+
+    while (iter < max_iter)
+    {
+        double z_real_temp = z_real;
+        z_real = z_real * z_real - z_imag * z_imag + c_real;
+        z_imag = 2 * z_real_temp * z_imag + c_imag;
+
+        if ((z_real * z_real + z_imag * z_imag) >= 4.0)
+        {
+            break;
+        }
+
+        iter++;
+    }
+
+    return iter;
+}
+
 
 // iterate through every x and y pixel cordinates and find the corresponding c_imag and c_real
 int32_t	main(void)
@@ -127,9 +146,12 @@ int32_t	main(void)
 			c_real = ft_calculate_c_real(x); // coresponding c number: c_real
 			c_imag = ft_calculate_c_imag(y); // coresponding c nu,ber: c_imag * i
 			iterations = ft_calculate_iterations(c_real, c_imag); // calculate iterations 
-			printf("iterations: %d\n", iterations);
-			color = calculate_color(iterations);
-			printf("color is %d\n\n", color);
+/* 			printf("iterations: %d\n", iterations);
+ */			//color = calculate_color(iterations);
+			if (iterations >= 10)
+				color = get_rgba(0,0,0,255);
+			else
+				color = get_rgba(255,0,0,255);
 			mlx_put_pixel(img, x, y, color);
 			x++;
 		}

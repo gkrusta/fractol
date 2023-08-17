@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 12:45:05 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/17 12:50:32 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/17 13:46:13 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,14 @@
 # include <pthread.h>
 #include <memory.h>
 #define WIDTH 600
-#define HEIGHT 600å
+#define HEIGHT 600
 
+typedef struct s_colors {
+	int	r;
+	int	g;
+	int	b;
+	int	a;
+}	t_colors;
 
 typedef struct s_fractol {
 	void	*init;
