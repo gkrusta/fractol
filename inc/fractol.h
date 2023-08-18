@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 12:45:05 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/17 13:46:13 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/18 10:57:31 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <math.h>
 # include <pthread.h>
 #include <memory.h>
-#define WIDTH 600
-#define HEIGHT 600
+#define WIDTH 700
+#define HEIGHT 700
 
 typedef struct s_colors {
 	int	r;
@@ -38,5 +38,14 @@ typedef struct s_fractol {
 	double	x;
 	int		iterations;
 }	t_fractol;
+
+
+uint32_t	calculate_color(int iter);
+void	hook(void *param);
+double	ft_calculate_c_real(double x);
+double	ft_calculate_c_imag(double y);
+int	get_rgba(int r, int g, int b, int a);
+int	ft_calculate_iterations(double c_real, double c_imag);
+
 
 #endif

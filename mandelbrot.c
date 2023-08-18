@@ -6,14 +6,11 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:23:28 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/17 18:30:48 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/18 15:02:03 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-
-/* mlx_image_t	*img; */
 
 void	hook(void *param)
 {
@@ -29,7 +26,7 @@ double	ft_calculate_c_real(double x)
 	double	c_real;
 
 	c_real = 3.0 * x / (WIDTH - 1);
-	return (-1.5 + c_real);
+	return (-2.0 + c_real);
 }
 
 double	ft_calculate_c_imag(double y)
@@ -37,39 +34,7 @@ double	ft_calculate_c_imag(double y)
 	double	c_imag;
 
 	c_imag = 3.0 * y / (HEIGHT - 1);
-	return (-2.0 + c_imag);
-}
-
-int	get_rgba(int r, int g, int b, int a)
-{
-	return (r << 24 | g << 16 | b << 8 | a);
-}
-
-// Function to calculate the color based on the number of iterations
-uint32_t	calculate_color(int iter)
-{
-	uint32_t	color;
-	int	r;
-	int	g;
-	int	b;
-
-	r = 0;
-	g = 0;
-	b = 0;
-	if (iter <= 3)
-		r = 255;
-	else if (iter <= 10)
-		g = 255;
-	else if (iter <= 32)
-		b = 255;
-	else
-	{
-		r = 100;
-		g = 76;
-		b = 34;
-	}
-	color = get_rgba(r, g, b, 255);
-	return (color);
+	return (-1.5 + c_imag);
 }
 
 /* calculate how many iterations it takes for the Mandelbrot fractal
@@ -84,44 +49,37 @@ int	ft_calculate_iterations(double c_real, double c_imag)
 	iter = 0;
 	z_real = 0;
 	z_imag = 0;
-	while (iter < 42) // how far to go?
+	while (iter < 34) // how far to go?
 	{
 		z_real_temp = z_real;
 		z_real = (z_real - z_imag) * (z_real + z_imag) + c_real; //  the real part: x^2 - y^2 + c_imag 
 		z_imag = 2 * z_real_temp * z_imag + c_imag; //  the imaginary part: 2xyi + c_real 
-		if ((z_real * z_real + z_imag * z_imag) >= 4.0 /* || z_imag > 3 */)
-		{
-			/* printf("we broke out!\n"); */
+		if ((z_real * z_real + z_imag * z_imag) >= 4.0)
 			break ;
-		}
 		iter++;
 	}
 	return (iter);
 }
 
-/* int ft_calculate_iterations(double c_real, double c_imag, int max_iter)
+/* void	make_window(t_fractol *f)
 {
-    double z_real = 0;
-    double z_imag = 0;
-    int iter = 0;
-
-    while (iter < max_iter)
-    {
-        double z_real_temp = z_real;
-        z_real = z_real * z_real - z_imag * z_imag + c_real;
-        z_imag = 2 * z_real_temp * z_imag + c_imag;
-
-        if ((z_real * z_real + z_imag * z_imag) >= 4.0)
-        {
-            break;
-        }
-
-        iter++;
-    }
-
-    return iter;
+	if (f->set == MANDELBROT)
+	{
+		f->init = mlx_init(WIDTH, HEIGHT, "MANDELBORT", false);
+		f->wdw = 
+		if (!)
+		{
+			
+		}
+	}
+	else if (f->set = JULIA)
+	{
+		if (!)
+		{
+			
+		}
+	}
 } */
-
 
 // iterate through every x and y pixel cordinates and find the corresponding c_imag and c_real
 int32_t	main(void)
@@ -148,9 +106,7 @@ int32_t	main(void)
 			c_real = ft_calculate_c_real(x); // coresponding c number: c_real
 			c_imag = ft_calculate_c_imag(y); // coresponding c number: c_imag * i
 			iterations = ft_calculate_iterations(c_real, c_imag); // calculate iterations 
-/* 			printf("iterations: %d\n", iterations);
- */			//color = calculate_color(iterations);
-			if (iterations >= 42)
+			if (iterations >= 34)
 				color = get_rgba(0,0,0,255);
 			else
 				color = calculate_color(iterations);
@@ -166,4 +122,52 @@ int32_t	main(void)
 	return (EXIT_SUCCESS);
 }
 
+/* 
+void	ft_calc_mandelbrot(t_fractal *f)
+{
+	double	temp;
 
+	f->c_re = (f->x - SIZE / 2.0f) * f->zoom / SIZE + f->k;
+	f->c_im = (f->y - SIZE / 2.0f) * f->zoom / SIZE + f->h;
+	f->z_re = 0;
+	f->z_im = 0;
+	f->i = 0;
+	while (f->z_re * f->z_re + f->z_im * f->z_im < (1 << 8)
+		&& f->i < f->max_iter)
+	{
+		temp = f->z_re * f->z_re - f->z_im * f->z_im + f->c_re;
+		f->z_im = f->z_re * f->z_im * 2.0f + f->c_im;
+		if (f->z_re == temp && f->i == f->z_im)
+		{
+			f->i = f->max_iter;
+			break ;
+		}
+		f->z_re = temp;
+		f->i++;
+	}
+	ft_put_pixel(f);
+}
+
+void	ft_calc_julia(t_fractal *f)
+{
+	double	temp;
+
+	f->z_re = (f->x - SIZE / 2.0) * f->zoom / SIZE + f->k;
+	f->z_im = (f->y - SIZE / 2.0) * f->zoom / SIZE + f->h;
+	f->i = 0;
+	while (f->z_re * f->z_re + f->z_im * f->z_im < (1 << 8)
+		&& f->i < f->max_iter)
+	{
+		temp = f->z_re * f->z_re - f->z_im * f->z_im + f->c_re;
+		f->z_im = 2.0 * f->z_re * f->z_im + f->c_im;
+		if (f->z_re == temp && f->z_im == f->z_im)
+		{
+			f->i = f->max_iter;
+			break ;
+		}
+		f->z_re = temp;
+		f->i++;
+	}
+	ft_put_pixel(f);
+}
+ */

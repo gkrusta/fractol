@@ -6,7 +6,7 @@
 #    By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/29 12:00:43 by gkrusta           #+#    #+#              #
-#    Updated: 2023/08/17 18:34:11 by gkrusta          ###   ########.fr        #
+#    Updated: 2023/08/18 08:54:22 by gkrusta          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,9 +33,8 @@ all: $(LIBFT) $(MLX42) $(NAME)
 
 $(NAME): $(OBJS)
 	@ echo "\033[32mCompiling Fractol...\n"
-	@$(CC)  $(FLAGS) $(OBJS) $(MLX42) $(LIBFT) -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/" $(HEADERS) -o $@
+	@$(CC) $(FLAGS) $(OBJS) $(MLX42) $(LIBFT) -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/" $(HEADERS) -o $@
 	@ echo "\n\t\t\033[32mCompiled!\n"
-
 
 %.o: %.c
 	@$(CC) $(FLAGS) -c $< -o $@ $(HEADERS)
