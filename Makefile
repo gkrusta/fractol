@@ -6,13 +6,13 @@
 #    By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/29 12:00:43 by gkrusta           #+#    #+#              #
-#    Updated: 2023/08/18 08:54:22 by gkrusta          ###   ########.fr        #
+#    Updated: 2023/08/18 19:31:00 by gkrusta          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 CC = gcc
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror -g -MD
 
 LIBFT_PATH = libraries/libft/
 LIBFT = $(LIBFT_PATH)/libft.a
