@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 12:45:05 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/18 10:57:31 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/18 15:54:08 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct s_colors {
 }	t_colors;
 
 typedef struct s_fractol {
+	int		max_iter;
+	int		type;
 	void	*init;
 	void	*wdw;
 	double	c_real;
