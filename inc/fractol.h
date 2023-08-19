@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 12:45:05 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/18 21:23:19 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/19 12:04:11 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include <memory.h>
 #define WIDTH 700
 #define HEIGHT 700
-#define MAX_ITER 20
+#define MAX_ITER 28
 
 typedef struct s_colors {
 	int	r;
@@ -33,7 +33,7 @@ typedef struct s_colors {
 typedef struct s_fractol {
 	mlx_t		*mlx;
 	mlx_image_t	*g_img;
-	int		max_iter;
+	int		set;
 	int		type;
 	void	*init;
 	void	*wdw;
@@ -43,7 +43,7 @@ typedef struct s_fractol {
 	double	c_imag;
 	double	y;
 	double	x;
-	int		iterations;
+	int		iter;
 }	t_fractol;
 
 
