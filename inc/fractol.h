@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 12:45:05 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/19 12:04:11 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/19 12:28:39 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include <memory.h>
 #define WIDTH 700
 #define HEIGHT 700
-#define MAX_ITER 28
+#define MAX_ITER 20
 
 typedef struct s_colors {
 	int	r;

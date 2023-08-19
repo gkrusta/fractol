@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:23:28 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/19 12:07:09 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/19 12:32:17 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ double	ft_calculate_c_real(double x)
 {
 	double	c_real;
 
-	c_real = 3.0 * x / (WIDTH - 1);
+	c_real = 3.5 * x / (WIDTH - 1);
 	return (-2.0 + c_real);
 }
 
@@ -33,7 +33,7 @@ double	ft_calculate_c_imag(double y)
 {
 	double	c_imag;
 
-	c_imag = 3.0 * y / (HEIGHT - 1);
+	c_imag = 3.5 * y / (HEIGHT - 1);
 	return (-1.5 + c_imag);
 }
 
@@ -121,53 +121,3 @@ int32_t	main(void)
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
 }
-
-/* 
-void	ft_calc_mandelbrot(t_fractal *f)
-{
-	double	temp;
-
-	f->c_re = (f->x - SIZE / 2.0f) * f->zoom / SIZE + f->k;
-	f->c_im = (f->y - SIZE / 2.0f) * f->zoom / SIZE + f->h;
-	f->z_re = 0;
-	f->z_im = 0;
-	f->i = 0;
-	while (f->z_re * f->z_re + f->z_im * f->z_im < (1 << 8)
-		&& f->i < f->max_iter)
-	{
-		temp = f->z_re * f->z_re - f->z_im * f->z_im + f->c_re;
-		f->z_im = f->z_re * f->z_im * 2.0f + f->c_im;
-		if (f->z_re == temp && f->i == f->z_im)
-		{
-			f->i = f->max_iter;
-			break ;
-		}
-		f->z_re = temp;
-		f->i++;
-	}
-	ft_put_pixel(f);
-}
-
-void	ft_calc_julia(t_fractal *f)
-{
-	double	temp;
-
-	f->z_re = (f->x - SIZE / 2.0) * f->zoom / SIZE + f->k;
-	f->z_im = (f->y - SIZE / 2.0) * f->zoom / SIZE + f->h;
-	f->i = 0;
-	while (f->z_re * f->z_re + f->z_im * f->z_im < (1 << 8)
-		&& f->i < f->max_iter)
-	{
-		temp = f->z_re * f->z_re - f->z_im * f->z_im + f->c_re;
-		f->z_im = 2.0 * f->z_re * f->z_im + f->c_im;
-		if (f->z_re == temp && f->z_im == f->z_im)
-		{
-			f->i = f->max_iter;
-			break ;
-		}
-		f->z_re = temp;
-		f->i++;
-	}
-	ft_put_pixel(f);
-}
- */
