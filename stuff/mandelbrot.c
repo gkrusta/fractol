@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:23:28 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/19 12:32:17 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/20 16:08:03 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ft_calculate_iterations(double c_real, double c_imag)
 	iter = 0;
 	z_real = 0;
 	z_imag = 0;
-	while (iter < MAX_ITER) // how far to go?
+	while (iter < MAX_ITER)
 	{
 		z_real_temp = z_real;
 		z_real = (z_real - z_imag) * (z_real + z_imag) + c_real; //  the real part: x^2 - y^2 + c_imag 
@@ -60,26 +60,6 @@ int	ft_calculate_iterations(double c_real, double c_imag)
 	}
 	return (iter);
 }
-
-/* void	make_window(t_fractol *f)
-{
-	if (f->set == MANDELBROT)
-	{
-		f->init = mlx_init(WIDTH, HEIGHT, "MANDELBORT", false);
-		f->wdw = 
-		if (!)
-		{
-			
-		}
-	}
-	else if (f->set = JULIA)
-	{
-		if (!)
-		{
-			
-		}
-	}
-} */
 
 // iterate through every x and y pixel cordinates and find the corresponding c_imag and c_real
 int32_t	main(void)
@@ -106,10 +86,7 @@ int32_t	main(void)
 			c_real = ft_calculate_c_real(x); // coresponding c number: c_real
 			c_imag = ft_calculate_c_imag(y); // coresponding c number: c_imag * i
 			iterations = ft_calculate_iterations(c_real, c_imag); // calculate iterations 
-			if (iterations >= MAX_ITER)
-				color = get_rgba(0,0,0,255);
-			else
-				color = calculate_color(iterations);
+			color = calculate_color(iterations);
 			mlx_put_pixel(img, x, y, color);
 			x++;
 		}

@@ -6,13 +6,13 @@
 #    By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/29 12:00:43 by gkrusta           #+#    #+#              #
-#    Updated: 2023/08/18 19:31:00 by gkrusta          ###   ########.fr        #
+#    Updated: 2023/08/20 16:32:11 by gkrusta          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 CC = gcc
-FLAGS = -Wall -Wextra -Werror -g -MD
+FLAGS = -Wall -Wextra -Werror -g
 
 LIBFT_PATH = libraries/libft/
 LIBFT = $(LIBFT_PATH)/libft.a
@@ -25,9 +25,9 @@ SRCS =  $(wildcard *.c)
 
 OBJS = $(SRCS:.c=.o)
 
-default: all
-	@ echo "\033[32mExecuted Fractol...\n"
-	@ ./fractol
+# default: all
+#	@ echo "\033[32mExecuted Fractol...\n"
+#	@ ./fractol
 
 all: $(LIBFT) $(MLX42) $(NAME) 
 

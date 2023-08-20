@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   julia.c                                            :+:      :+:    :+:   */
+/*   calculate_fractol.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 14:55:53 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/19 10:43:35 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/20 13:55:30 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-int	ft_calculate_iterations(double c_real, double c_imag)
+/* 
+int	ft_calculate_julia(double c_real, double c_imag)
 {
 	double	f->z_real_temp;
 	int		f->iter;
@@ -30,4 +30,4 @@ int	ft_calculate_iterations(double c_real, double c_imag)
 		f->iter++;
 	}
 	return (iter);
-} 
+}  */
