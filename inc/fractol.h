@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 12:45:05 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/21 09:10:25 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/21 11:58:39 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,29 @@ typedef struct s_fractol {
 	double		c_imag;
 	double		y;
 	double		x;
+	double		lim_x;
+	double		lim_y;
+	double		zoom;
 	int			iter;
 }	t_fractol;
 
 
-//uint32_t	calculate_color(t_fractol *f);
-uint32_t calculate_color(int iter);
-int	get_rgba(int r, int g, int b, int a);
-/* void	hook(void *param);
-double	ft_calculate_c_real(double x);
-double	ft_calculate_c_imag(double y);
-int	ft_calculate_iterations(double c_real, double c_imag); */
+/* sets color based on number of iterations */
+uint32_t	calculate_color(int iter);
+int			get_rgba(int r, int g, int b, int a);
+
+/* fractol sets */
+void	mandelbrot(t_fractol *f);
+void	julia(t_fractol *f);
+
+/* calculations */
+double	calculate_real_part(t_fractol *f);
+double	calculate_imag_part(t_fractol *f);
+int		ft_calculate_iter(t_fractol *f);
+
+/* set */
+int		check_argv(const char *set);
+void	calculate_set(t_fractol *f);
+char	*choose_set(int set);
 
 #endif

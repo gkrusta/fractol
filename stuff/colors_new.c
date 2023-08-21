@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 12:57:58 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/20 13:55:54 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/21 09:52:18 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,42 @@ uint32_t	calculate_color(t_fractol *f)
 
 	color->final = get_rgba(color->r, color->g, color->b, 255);
 	mlx_put_pixel(f->g_img, f->x, f->y, color->final);
+}
+ */
+
+// Function to calculate the color based on the number of iterations
+/* void	calculate_color(t_fractol *f)
+{
+	t_colors	*color;
+
+	color = malloc(sizeof(t_colors));
+	if (f->iter == MAX_ITER)
+		color->final = get_rgba(0, 0, 0, 255); // Black for points in the set
+	color->gradient = (double)f->iter / MAX_ITER; // Calculate a value between 0 and 1
+	color->r = (int)(255 * (1 - color->gradient)); // Red component based on t
+	color->g = (int)(255 * (1 - color->gradient)); // Green component based on (1 - t)
+	color->b = (int)(255); // Blue component based on t
+	printf("colors %d %d %d\n", color->r, color->g, color->b);
+	color->final = get_rgba(color->r, color->g, color->b, 255);
+	mlx_put_pixel(f->g_img, f->x, f->y, color->final);
+} */
+
+/* t_colors calculate_color(t_fractol *f)
+{
+	t_colors color;
+
+	if (f->iter == MAX_ITER)
+	{
+		color.final = get_rgba(0, 0, 0, 255); // Black for points in the set
+		return color;
+	}
+
+	color.gradient = (double)f->iter / MAX_ITER; // Calculate a value between 0 and 1
+	color.r = (int)(255 * (1 - color.gradient)); // Red component based on t
+	color.g = (int)(255 * (1 - color.gradient)); // Green component based on (1 - t)
+	color.b = (int)(255); // Blue component based on t
+	color.final = get_rgba(color.r, color.g, color.b, 255);
+
+	return color;
 }
  */
