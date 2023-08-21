@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 12:45:05 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/21 11:58:39 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/21 18:36:35 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@
 # include <pthread.h>
 #include <memory.h>
 # include <stddef.h>
+#include <math.h>
 
 #define WIDTH 1100
 #define HEIGHT 1100
-#define MAX_ITER 30
+#define MAX_ITER 24
 
 typedef struct s_colors {
 	int		r;
 	int		g;
 	int		b;
-	int		a;
 	uint32_t	final;
 	double	gradient;
 }	t_colors;
@@ -52,16 +52,24 @@ typedef struct s_fractol {
 	double		lim_y;
 	double		zoom;
 	int			iter;
+	int			color_set;
+	int			r;
+	int			g;
+	int			b;
 }	t_fractol;
 
 
 /* sets color based on number of iterations */
-uint32_t	calculate_color(int iter);
+uint32_t	calculate_color(t_fractol *f);
+uint32_t	calculate_color_default(t_fractol *f);
+uint32_t	calculate_color_pink(t_fractol *f);
+uint32_t	calculate_color_black(t_fractol *f);
 int			get_rgba(int r, int g, int b, int a);
 
 /* fractol sets */
-void	mandelbrot(t_fractol *f);
-void	julia(t_fractol *f);
+void	fractol(t_fractol *f);
+/* void	julia(t_fractol *f);
+void	burning_ship(t_fractol *f); */
 
 /* calculations */
 double	calculate_real_part(t_fractol *f);
@@ -70,7 +78,7 @@ int		ft_calculate_iter(t_fractol *f);
 
 /* set */
 int		check_argv(const char *set);
-void	calculate_set(t_fractol *f);
+/* void	calculate_set(t_fractol *f); */
 char	*choose_set(int set);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:08:35 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/21 12:37:45 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/21 18:42:37 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,13 @@ void	hook(void *param)
 		f->zoom *= 1.1; // increase zoom by 10%
 	if (mlx_is_key_down(f->mlx, MLX_KEY_O))
 		f->zoom /= 1.1; // Decrease zoom by 10%
-	calculate_set(f);
+	if (mlx_is_key_down(f->mlx, MLX_KEY_1))
+		f->color_set = 1;
+	if (mlx_is_key_down(f->mlx, MLX_KEY_2))
+		f->color_set = 2;
+	if (mlx_is_key_down(f->mlx, MLX_KEY_3))
+		f->color_set = 3;
+	fractol(f);
 }
 
 void	start_initialization(t_fractol *f)
@@ -47,6 +53,10 @@ void	start_initialization(t_fractol *f)
 	f->c_real = 0;
 	f->c_imag = 0;
 	f->zoom = 1.0;
+	f->color_set = 1;
+	f->r = 0;
+	f->g = 0;
+	f->b = 0;
 	if (f->set == 2) // in julia c is a chosen constant
 	{
 		f->c_real = -0.57;
@@ -56,9 +66,9 @@ void	start_initialization(t_fractol *f)
 
 double	calculate_real_part(t_fractol *f)
 {
-	if (f->set == 1)
+	if (f->set == 1 || f->set == 3)
 	{
-		f->c_real = 3.4 * f->x / (WIDTH - 1) ;
+		f->c_real = 3.7 * f->x / (WIDTH - 1) ;
 		return ((-2.0 + f->c_real) / f->zoom);
 	}
 	else
@@ -70,10 +80,10 @@ double	calculate_real_part(t_fractol *f)
 
 double	calculate_imag_part(t_fractol *f)
 {
-	if (f->set == 1)
+	if (f->set == 1 || f->set == 3)
 	{
-		f->c_imag = 3.4 * f->y / (HEIGHT - 1) ;
-		return ((-1.5 + f->c_imag) / f->zoom);
+		f->c_imag = 3.7 * f->y / (HEIGHT - 1) ;
+		return ((-1.9 + f->c_imag) / f->zoom);
 	}
 	else
 	{
@@ -87,7 +97,7 @@ int	ft_calculate_iter(t_fractol *f)
 	double	z_real_temp;
 
 	f->iter = 0;
-	if (f->set == 1)
+	if (f->set == 1 || f->set == 3)
 	{
 		f->z_real = 0;
 		f->z_imag = 0;
@@ -96,7 +106,10 @@ int	ft_calculate_iter(t_fractol *f)
 	{
 		z_real_temp = f->z_real;
 		f->z_real = ((f->z_real - f->z_imag) * (f->z_real + f->z_imag) + f->c_real); //  the real part: x^2 - y^2 + c_imag 
-		f->z_imag = (2 * z_real_temp * f->z_imag + f->c_imag); //  the imaginary part: 2xyi + c_real 
+		if (f->set == 3) // julia calculates the absolute value 
+			f->z_imag = 2 * fabs(z_real_temp * f->z_imag) + f->c_imag;
+		else
+			f->z_imag = (2 * z_real_temp * f->z_imag + f->c_imag); //  the imaginary part: 2xyi + c_real 
 		if ((f->z_real * f->z_real + f->z_imag * f->z_imag) >= 4.0)
 			break ;
 		f->iter++;
@@ -110,7 +123,7 @@ int	main(int argc, char **argv)
 
 	f = malloc(sizeof(t_fractol));
 	f->set = check_argv(argv[1]);
-	if (argc == 2 && (f->set == 1 || f->set == 2))
+	if (argc == 2 && (f->set == 1 || f->set == 2 || f->set == 3))
 	{
 		start_initialization(f);
 		f->mlx = mlx_init(WIDTH, HEIGHT, choose_set(f->set), false);
@@ -119,7 +132,7 @@ int	main(int argc, char **argv)
 		f->g_img = mlx_new_image(f->mlx, WIDTH, HEIGHT);
 		if (!f->g_img)
 			exit(EXIT_FAILURE);
-		calculate_set(f);
+		fractol(f);
 		mlx_image_to_window(f->mlx, f->g_img, 0, 0);
 		mlx_loop_hook(f->mlx, &hook, f);
 		mlx_loop(f->mlx);
