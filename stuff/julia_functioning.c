@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:23:28 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/20 18:41:56 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/21 09:08:42 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	hook(void *param)
 
 // Define the constant c for the Julia set
 const double julia_c_real = -0.653;
-const double julia_c_imag = -0.352;
+const double julia_c_ima  g = -0.352;
 
 double	ft_calculate_c_real(double x)
 {

@@ -6,19 +6,29 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:08:35 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/20 19:48:04 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/21 09:30:06 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	hook(void *param)
+/* void	hook(void *param)
 {
 	mlx_t	*mlx;
 
 	mlx = param;
 	if (mlx_is_key_down(param, MLX_KEY_ESCAPE))
 		mlx_close_window(param);
+} */
+
+
+void	hook(void *param)
+{
+	t_fractol	*f;
+
+	f = param;
+	if (mlx_is_key_down(f->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(f->mlx);
 }
 
 void	start_initialization(t_fractol *f)
@@ -32,21 +42,37 @@ void	start_initialization(t_fractol *f)
 	f->c_imag = 0;
 	if (f->set == 2) // in julia c is a chosen constant
 	{
-		f->c_real = -0.7;
-		f->c_imag = 0.27;
+		f->c_real = -0.57;
+		f->c_imag = -0.47;
 	}
 }
 
-double	ft_calculate_c_real(t_fractol *f)
+double	calculate_real_part(t_fractol *f)
 {
-	f->c_real = 3.5 * f->x / (WIDTH - 1);
-	return (-2.0 + f->c_real);
+	if (f->set == 1)
+	{
+		f->c_real = 3.4 * f->x / (WIDTH - 1);
+		return (-2.0 + f->c_real);
+	}
+	else
+	{
+		f->z_real = 3.4 * f->x / (WIDTH - 1);
+		return (-1.7 + f->z_real);
+	}
 }
 
-double	ft_calculate_c_imag(t_fractol *f)
+double	calculate_imag_part(t_fractol *f)
 {
-	f->c_imag = 3.5 * f->y / (HEIGHT - 1);
-	return (-1.5 + f->c_imag);
+	if (f->set == 1)
+	{
+		f->c_imag = 3.4 * f->y / (HEIGHT - 1);
+		return (-1.5 + f->c_imag);
+	}
+	else
+	{
+		f->z_imag = 3.4 * f->y / (HEIGHT - 1);
+		return (-1.7 + f->z_imag);
+	}
 }
 
 int get_rgba(int r, int g, int b, int a)
@@ -60,8 +86,11 @@ int	ft_calculate_iter(t_fractol *f)
 
 	//printf ("iterations: 2222");
 	f->iter = 0;
-	f->z_real = 0;
-	f->z_imag = 0;
+	if (f->set == 1)
+	{
+		f->z_real = 0;
+		f->z_imag = 0;
+	}
 	while (f->iter < MAX_ITER)
 	{
 		z_real_temp = f->z_real;
@@ -156,9 +185,9 @@ void	mandelbrot(t_fractol *f)
 		f->x = 0;
 		while (f->x < WIDTH)
 		{
-			f->c_real = ft_calculate_c_real(f); // coresponding c number: c_real
+			f->c_real = calculate_real_part(f); // coresponding c number: c_real
 			//printf("c real is %f\n", f->c_real);
-			f->c_imag = ft_calculate_c_imag(f); // coresponding c number: c_imag * i
+			f->c_imag = calculate_imag_part(f); // coresponding c number: c_imag * i
 			//printf("c imag is %f\n", f->c_imag);
 			f->iter = ft_calculate_iter(f); // calculate iter 
 			//printf ("iterations: %d\n", f->iter);
@@ -180,8 +209,8 @@ void	julia(t_fractol *f)
 		f->x = 0;
 		while (f->x < WIDTH)
 		{
-			f->z_real = ft_calculate_c_real(f); // coresponding c number: c_real
-			f->z_imag = ft_calculate_c_imag(f); // coresponding c number: c_imag * i
+			f->z_real = calculate_real_part(f); // coresponding c number: c_real
+			f->z_imag = calculate_imag_part(f); // coresponding c number: c_imag * i
 			f->iter = ft_calculate_iter(f); // calculate iter 
 			color = calculate_color(f->iter);
 			mlx_put_pixel(f->g_img, f->x, f->y, color);
