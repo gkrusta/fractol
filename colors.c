@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 09:58:00 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/21 17:37:48 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/22 09:24:04 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ uint32_t	calculate_color_default(t_fractol *f)
 {
 	double	t;
 
-	if (f->iter == MAX_ITER)
+	if (f->iter == f->max_iter)
 		return (get_rgba(0, 0, 0, 255)); // Black for points in the set
-	t = (double)f->iter / MAX_ITER; // Calculate a value between 0 and 1
+	t = (double)f->iter / f->max_iter; // Calculate a value between 0 and 1
 	f->r = (int)(255 * (1 - t)); // Red component based on t
 	f->g = (int)(255 * (1 - t)); // Green component based on (1 - t)
 	f->b = (int)(255); // Blue component based on t
@@ -34,9 +34,9 @@ uint32_t	calculate_color_pink(t_fractol *f)
 {
 	double	t;
 
-	if (f->iter == MAX_ITER)
+	if (f->iter == f->max_iter)
 		return (get_rgba(0, 0, 0, 255));
-	t = (double)f->iter / MAX_ITER;
+	t = (double)f->iter / f->max_iter;
 	f->r = (int)(255 * t);
 	f->g = (int)(255 * (1 - t));
 	f->b = (int)(255);
@@ -47,9 +47,9 @@ uint32_t	calculate_color_black(t_fractol *f)
 {
 	double	t;
 
-	if (f->iter == MAX_ITER)
+	if (f->iter == f->max_iter)
 		return (get_rgba(0, 0, 0, 255));
-	t = (double)f->iter / MAX_ITER;
+	t = (double)f->iter / f->max_iter;
 	f->r = (int)(255 * t);
 	f->g = (int)(255 * t);
 	f->b = (int)(255 * t);

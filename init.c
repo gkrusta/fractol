@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:08:35 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/21 18:42:37 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/22 09:25:01 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ void	hook(void *param)
 		f->zoom *= 1.1; // increase zoom by 10%
 	if (mlx_is_key_down(f->mlx, MLX_KEY_O))
 		f->zoom /= 1.1; // Decrease zoom by 10%
+	if (mlx_is_key_down(f->mlx, MLX_KEY_U))
+		f->max_iter += 1;
+	if (mlx_is_key_down(f->mlx, MLX_KEY_D))
+		f->max_iter -= 1;
 	if (mlx_is_key_down(f->mlx, MLX_KEY_1))
 		f->color_set = 1;
 	if (mlx_is_key_down(f->mlx, MLX_KEY_2))
@@ -44,6 +48,7 @@ void	hook(void *param)
 void	start_initialization(t_fractol *f)
 {
 	f->iter = 0;
+	f->max_iter = 25;
 	f->x = 0;
 	f->y = 0;
 	f->lim_x = 4; // adjust later
@@ -66,29 +71,29 @@ void	start_initialization(t_fractol *f)
 
 double	calculate_real_part(t_fractol *f)
 {
-	if (f->set == 1 || f->set == 3)
-	{
-		f->c_real = 3.7 * f->x / (WIDTH - 1) ;
-		return ((-2.0 + f->c_real) / f->zoom);
-	}
-	else
+	if (f->set == 2)
 	{
 		f->z_real = 3.4 * f->x / (WIDTH - 1);
 		return ((-1.7 + f->z_real) / f->zoom);
+	}
+	else
+	{
+		f->c_real = 3.7 * f->x / (WIDTH - 1);
+		return ((-2.0 + f->c_real) / f->zoom);
 	}
 }
 
 double	calculate_imag_part(t_fractol *f)
 {
-	if (f->set == 1 || f->set == 3)
-	{
-		f->c_imag = 3.7 * f->y / (HEIGHT - 1) ;
-		return ((-1.9 + f->c_imag) / f->zoom);
-	}
-	else
+	if (f->set == 2)
 	{
 		f->z_imag = 3.4 * f->y / (HEIGHT - 1);
 		return ((-1.7 + f->z_imag) / f->zoom);
+	}
+	else
+	{
+		f->c_imag = 3.7 * f->y / (HEIGHT - 1) ;
+		return ((-1.9 + f->c_imag) / f->zoom);
 	}
 }
 
@@ -102,11 +107,11 @@ int	ft_calculate_iter(t_fractol *f)
 		f->z_real = 0;
 		f->z_imag = 0;
 	}
-	while (f->iter < MAX_ITER)
+	while (f->iter < f->max_iter)
 	{
 		z_real_temp = f->z_real;
 		f->z_real = ((f->z_real - f->z_imag) * (f->z_real + f->z_imag) + f->c_real); //  the real part: x^2 - y^2 + c_imag 
-		if (f->set == 3) // julia calculates the absolute value 
+		if (f->set == 3) // burning ship calculates the absolute value 
 			f->z_imag = 2 * fabs(z_real_temp * f->z_imag) + f->c_imag;
 		else
 			f->z_imag = (2 * z_real_temp * f->z_imag + f->c_imag); //  the imaginary part: 2xyi + c_real 

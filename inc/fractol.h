@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 12:45:05 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/21 18:36:35 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/22 09:22:31 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@
 
 #define WIDTH 1100
 #define HEIGHT 1100
-#define MAX_ITER 24
+/* #define MAX_ITER 24  */
 
-typedef struct s_colors {
+/* typedef struct s_colors {
 	int		r;
 	int		g;
 	int		b;
 	uint32_t	final;
 	double	gradient;
-}	t_colors;
+}	t_colors; */
 
 typedef struct s_fractol {
 	mlx_t		*mlx;
@@ -52,6 +52,7 @@ typedef struct s_fractol {
 	double		lim_y;
 	double		zoom;
 	int			iter;
+	int			max_iter;
 	int			color_set;
 	int			r;
 	int			g;
