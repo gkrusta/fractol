@@ -6,58 +6,27 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:08:35 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/22 09:25:01 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/22 13:22:32 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-/* void	hook(void *param)
-{
-	mlx_t	*mlx;
-
-	mlx = param;
-	if (mlx_is_key_down(param, MLX_KEY_ESCAPE))
-		mlx_close_window(param);
-} */
-
-void	hook(void *param)
-{
-	t_fractol	*f;
-
-	f = param;
-	if (mlx_is_key_down(f->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(f->mlx);
-	if (mlx_is_key_down(f->mlx, MLX_KEY_I))
-		f->zoom *= 1.1; // increase zoom by 10%
-	if (mlx_is_key_down(f->mlx, MLX_KEY_O))
-		f->zoom /= 1.1; // Decrease zoom by 10%
-	if (mlx_is_key_down(f->mlx, MLX_KEY_U))
-		f->max_iter += 1;
-	if (mlx_is_key_down(f->mlx, MLX_KEY_D))
-		f->max_iter -= 1;
-	if (mlx_is_key_down(f->mlx, MLX_KEY_1))
-		f->color_set = 1;
-	if (mlx_is_key_down(f->mlx, MLX_KEY_2))
-		f->color_set = 2;
-	if (mlx_is_key_down(f->mlx, MLX_KEY_3))
-		f->color_set = 3;
-	fractol(f);
-}
-
 void	start_initialization(t_fractol *f)
 {
 	f->iter = 0;
-	f->max_iter = 25;
+	f->max_iter = 24;
 	f->x = 0;
 	f->y = 0;
 	f->lim_x = 4; // adjust later
 	f->lim_y = 4; // adjust later
+	f->slide_x = -2;
+	f->slide_y = -1.9;
 	f->z_real = 0;
 	f->z_imag = 0;
 	f->c_real = 0;
 	f->c_imag = 0;
-	f->zoom = 1.0;
+	f->zoom = 1;
 	f->color_set = 1;
 	f->r = 0;
 	f->g = 0;
@@ -66,60 +35,9 @@ void	start_initialization(t_fractol *f)
 	{
 		f->c_real = -0.57;
 		f->c_imag = -0.47;
+		f->slide_x = -1.7;
+		f->slide_y = -1.7;
 	}
-}
-
-double	calculate_real_part(t_fractol *f)
-{
-	if (f->set == 2)
-	{
-		f->z_real = 3.4 * f->x / (WIDTH - 1);
-		return ((-1.7 + f->z_real) / f->zoom);
-	}
-	else
-	{
-		f->c_real = 3.7 * f->x / (WIDTH - 1);
-		return ((-2.0 + f->c_real) / f->zoom);
-	}
-}
-
-double	calculate_imag_part(t_fractol *f)
-{
-	if (f->set == 2)
-	{
-		f->z_imag = 3.4 * f->y / (HEIGHT - 1);
-		return ((-1.7 + f->z_imag) / f->zoom);
-	}
-	else
-	{
-		f->c_imag = 3.7 * f->y / (HEIGHT - 1) ;
-		return ((-1.9 + f->c_imag) / f->zoom);
-	}
-}
-
-int	ft_calculate_iter(t_fractol *f)
-{
-	double	z_real_temp;
-
-	f->iter = 0;
-	if (f->set == 1 || f->set == 3)
-	{
-		f->z_real = 0;
-		f->z_imag = 0;
-	}
-	while (f->iter < f->max_iter)
-	{
-		z_real_temp = f->z_real;
-		f->z_real = ((f->z_real - f->z_imag) * (f->z_real + f->z_imag) + f->c_real); //  the real part: x^2 - y^2 + c_imag 
-		if (f->set == 3) // burning ship calculates the absolute value 
-			f->z_imag = 2 * fabs(z_real_temp * f->z_imag) + f->c_imag;
-		else
-			f->z_imag = (2 * z_real_temp * f->z_imag + f->c_imag); //  the imaginary part: 2xyi + c_real 
-		if ((f->z_real * f->z_real + f->z_imag * f->z_imag) >= 4.0)
-			break ;
-		f->iter++;
-	}
-	return (f->iter);
 }
 
 int	main(int argc, char **argv)

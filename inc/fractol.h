@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 12:45:05 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/22 09:22:31 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/22 13:24:59 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@
 typedef struct s_fractol {
 	mlx_t		*mlx;
 	mlx_image_t	*g_img;
+	double		slide_x; // for arrows ;,)
+	double		slide_y;
 	int			set;
 	void		*init;
 	void		*wdw;
@@ -81,5 +83,18 @@ int		ft_calculate_iter(t_fractol *f);
 int		check_argv(const char *set);
 /* void	calculate_set(t_fractol *f); */
 char	*choose_set(int set);
+
+
+/* hooks */
+void	hook(void *param);
+void	move_with_arrows(t_fractol *f);
+void	change_color(t_fractol *f);
+void	change_iterations(t_fractol *f);
+void	zooming(t_fractol *f);
+
+/* calcualtions */
+double	calculate_real_part(t_fractol *f);
+double	calculate_imag_part(t_fractol *f);
+int	ft_calculate_iter(t_fractol *f);
 
 #endif

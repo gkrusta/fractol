@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 10:01:09 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/21 18:34:53 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/22 09:40:40 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	fractol(t_fractol *f)
 				//printf("c imag is %f\n", f->c_imag); 
 			}
 			f->iter = ft_calculate_iter(f); // calculate iter 
-			//printf ("iterations: %d\n", f->iter);
 			color = calculate_color(f);
 			mlx_put_pixel(f->g_img, f->x, f->y, color);
 			f->x++;
