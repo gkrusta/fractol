@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 12:45:05 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/23 14:43:19 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/23 15:38:19 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@
 
 #define WIDTH 1100
 #define HEIGHT 1100
-/* #define MAX_ITER 24  */
+
+// MOUSECODES
+# define SCROLL_UP 4
+# define SCROLL_DOWN 5
 
 /* typedef struct s_colors {
 	int		r;
@@ -100,7 +103,8 @@ int	ft_calculate_iter(t_fractol *f);
 void	start_initialization(t_fractol *f);
 //void mouse_scroll_callback(int xdelta, int ydelta, void* param);
 
-void	zoom_scroll(t_fractol *fractal, double x, double y, int zoom);
-void	mouse_scroll(int mouse_wheel, double x, double y, t_fractol *f);
-
+/* 
+void	zoom(t_fractol *fractol, int x, int y, int zoom);
+int			key_hook(int key_code, t_fractol *fractal);
+int			mouse_hook(int mouse_code, int x, int y, t_fractol *fractal); */
 #endif
