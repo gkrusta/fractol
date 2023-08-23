@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:08:35 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/22 13:22:32 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/23 11:33:30 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,35 @@ void	start_initialization(t_fractol *f)
 	}
 }
 
+/* void	mouse_scroll_callback(double xdelta, double ydelta, void* param)
+{
+	t_fractol *f = (t_fractol *)param;
+	int32_t cursor_x, cursor_y;
+
+	// Get the current cursor position
+	mlx_get_mouse_pos(f->mlx, &cursor_x, &cursor_y);
+
+	double zoom_factor = 1.05; // Adjust this factor as needed
+
+	if (ydelta > 0)
+	{
+		f->zoom *= zoom_factor;
+		// Adjust the slide_x and slide_y based on cursor position
+		f->slide_x -= (cursor_x - WIDTH / 2) * (1.0 - zoom_factor) / f->zoom;
+		f->slide_y -= (cursor_y - HEIGHT / 2) * (1.0 - zoom_factor) / f->zoom;
+	}
+	else if (ydelta < 0)
+	{
+		f->zoom /= zoom_factor;
+		// Adjust the slide_x and slide_y based on cursor position
+		f->slide_x += (cursor_x - WIDTH / 2) * (1.0 - 1.0 / zoom_factor) / f->zoom;
+		f->slide_y += (cursor_y - HEIGHT / 2) * (1.0 - 1.0 / zoom_factor) / f->zoom;
+	}
+
+	// Recalculate and redraw the fractol
+	fractol(f);
+} */
+
 int	main(int argc, char **argv)
 {
 	t_fractol	*f;
@@ -61,6 +90,7 @@ int	main(int argc, char **argv)
 		mlx_loop(f->mlx);
 		mlx_delete_image(f->mlx, f->g_img);
 		mlx_terminate(f->mlx);
+		free (f);
 		return (EXIT_SUCCESS);
 	}
 	return (0);
