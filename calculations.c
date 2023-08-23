@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 13:22:37 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/23 15:50:11 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/23 23:10:44 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ double calculate_real_part(t_fractol *f)
 {
 	if (f->set == 2)
 	{
-		f->z_real = (3.4 * f->x / (WIDTH - 1)) / f->zoom;
-		return (f->slide_x + f->z_real);
+		f->z_real = (3.4 * f->x / (WIDTH - 1));
+		return (f->slide_x + f->z_real) / f->zoom;
 	}
 	else
 	{
-		f->c_real = (3.7 * f->x / (WIDTH - 1)) / f->zoom;
-		return (f->slide_x + f->c_real);
+		f->c_real = (3.7 * f->x / (WIDTH - 1));
+		return (f->slide_x + f->c_real) / f->zoom;
 	}
 }
 
@@ -33,13 +33,13 @@ double calculate_imag_part(t_fractol *f)
 {
 	if (f->set == 2)
 	{
-		f->z_imag = (3.4 * f->y / (HEIGHT - 1)) / f->zoom;
-		return (f->slide_y + f->z_imag);
+		f->z_imag = (3.4 * f->y / (HEIGHT - 1));
+		return (f->slide_y + f->z_imag) / f->zoom;
 	}
 	else
 	{
-		f->c_imag = (3.7 * f->y / (HEIGHT - 1)) / f->zoom;
-		return (f->slide_y + f->c_imag);
+		f->c_imag = (3.7 * f->y / (HEIGHT - 1)) ;
+		return (f->slide_y + f->c_imag) / f->zoom;
 	}
 }
 /* 

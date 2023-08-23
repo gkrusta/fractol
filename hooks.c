@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 12:21:51 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/23 15:54:04 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/23 23:10:44 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,38 @@ void	move_with_arrows(t_fractol *f)
 		f->slide_x -= 0.8;
 }
 
+void my_scrollhook(double xdelta, double ydelta, void *param)
+{
+    t_fractol *f = (t_fractol *)param;
+    int32_t mouse_x;
+    int32_t mouse_y;
+    double movex;
+    double movey;
+
+    (void)xdelta; // Unused parameter
+
+    // Get the current mouse position
+    mlx_get_mouse_pos(f->mlx, &mouse_x, &mouse_y);
+
+    // Ensure the mouse position is within valid range
+    if (mouse_x < 0 || mouse_x >= WIDTH || mouse_y < 0 || mouse_y >= HEIGHT)
+        return;
+
+    // Calculate the movement of the fractal based on mouse position
+    movex = (mouse_x - WIDTH / 2.0) * f->zoom / WIDTH;
+    movey = (mouse_y - HEIGHT / 2.0) * f->zoom / HEIGHT;
+
+    // Adjust the zoom factor
+    double zoom_factor = (ydelta > 0) ? 1.1 : 0.9;
+    f->zoom *= zoom_factor;
+
+    // Adjust the slide parameters based on the new zoom and mouse position
+    f->slide_x += movex - (mouse_x - WIDTH / 2.0) * f->zoom / WIDTH;
+    f->slide_y += movey - (mouse_y - HEIGHT / 2.0) * f->zoom / HEIGHT;
+}
+
+
+/* 
 void	my_scrollhook(double xdelta, double ydelta, void *param)
 {
 	t_fractol	*f;
@@ -72,8 +104,30 @@ void	my_scrollhook(double xdelta, double ydelta, void *param)
 		f->zoom /= 1.1;
 	f->slide_x += movex - (mouse_x - WIDTH / 2.0) * f->zoom / WIDTH;
 	f->slide_y += movey - (mouse_y - HEIGHT / 2.0) * f->zoom / HEIGHT;
-}
+} */
+/* 
+void my_scrollhook(double xdelta, double ydelta, void *param)
+{
+    t_fractol *f = (t_fractol *)param;
+    int cursor_x, cursor_y;
+    (void)xdelta;
+    mlx_get_mouse_pos(f->mlx, &cursor_x, &cursor_y);
+	//printf("mouse is %d and %d \n", cursor_x, cursor_y);
+	f->slide_y = 0;
+	f->slide_x = 0;
+    // Calculate how much to adjust the zoom based on ydelta
+    double zoom_factor = 1.0 + (ydelta > 0 ? 0.1 : -0.1);
 
+    // Calculate new slide and zoom based on cursor position
+    f->slide_x -= (cursor_x - WIDTH / 2) * (1.0 - zoom_factor) / f->zoom;
+	printf("slide x  is %f and %f \n", f->slide_x, zoom_factor);
+
+    f->slide_y -= (cursor_y - HEIGHT / 2) * (1.0 - zoom_factor) / f->zoom;
+	printf("slide y  is %f and %f \n", f->slide_y, zoom_factor);
+
+    f->zoom *= zoom_factor;
+}
+ */
 
 void	hook(void *param)
 {

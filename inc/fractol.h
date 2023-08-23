@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 12:45:05 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/23 15:38:19 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/23 23:03:03 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,18 @@ int	ft_calculate_iter(t_fractol *f);
 
 void	start_initialization(t_fractol *f);
 //void mouse_scroll_callback(int xdelta, int ydelta, void* param);
+void	zoom(t_fractol *fractal, int x, int y, int zoom);
+void my_scrollhook(double xdelta, double ydelta, void *param);
+
+
+void	zoom(t_fractol *fractal, int x, int y, int zoom);
+// void	mouse_hook(int mouse_code, int x, int y, t_fractol *fractal);
+
+
+void	ft_zoom(double x, double y, t_fractol *fractal);
+void	ft_dezoom(double x, double y, t_fractol *fractal);
+void	mouse_hook(int key_code, int x, int y, t_fractol *fractal);
+
 
 /* 
 void	zoom(t_fractol *fractol, int x, int y, int zoom);
