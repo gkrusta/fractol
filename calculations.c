@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 13:22:37 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/23 15:21:36 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/23 15:50:11 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,34 @@
 /* For Julia set the complex number to be alcualted is z because c is set as a constant.
 For Mandelbrot and Burning ship the c will change depending where it is on the complex plane 
 determinating the count of the iterations later. */
+double calculate_real_part(t_fractol *f)
+{
+	if (f->set == 2)
+	{
+		f->z_real = (3.4 * f->x / (WIDTH - 1)) / f->zoom;
+		return (f->slide_x + f->z_real);
+	}
+	else
+	{
+		f->c_real = (3.7 * f->x / (WIDTH - 1)) / f->zoom;
+		return (f->slide_x + f->c_real);
+	}
+}
 
+double calculate_imag_part(t_fractol *f)
+{
+	if (f->set == 2)
+	{
+		f->z_imag = (3.4 * f->y / (HEIGHT - 1)) / f->zoom;
+		return (f->slide_y + f->z_imag);
+	}
+	else
+	{
+		f->c_imag = (3.7 * f->y / (HEIGHT - 1)) / f->zoom;
+		return (f->slide_y + f->c_imag);
+	}
+}
+/* 
 double	calculate_real_part(t_fractol *f)
 {
 	if (f->set == 2)
@@ -42,7 +69,7 @@ double	calculate_imag_part(t_fractol *f)
 		f->c_imag = 3.7 * f->y / (HEIGHT - 1);
 		return ((f->slide_y + f->c_imag) / f->zoom);
 	}
-}
+} */
 
 /*
 So the z has x and imaginary y component:

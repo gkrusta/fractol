@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 12:21:51 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/23 15:37:23 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/23 15:54:04 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	my_scrollhook(double xdelta, double ydelta, void *param)
 	f = (t_fractol *)param;
 	(void)xdelta;
 	mlx_get_mouse_pos(f->mlx, &mouse_x, &mouse_y);
-	mouse_x -= 350;
+	mouse_x = 330;
 	if (mouse_x < 0 || mouse_x >= WIDTH || mouse_y < 0 || mouse_y >= HEIGHT)
 		return ;
 	movex = (mouse_x - WIDTH / 2.0) * f->zoom / WIDTH;
@@ -73,6 +73,7 @@ void	my_scrollhook(double xdelta, double ydelta, void *param)
 	f->slide_x += movex - (mouse_x - WIDTH / 2.0) * f->zoom / WIDTH;
 	f->slide_y += movey - (mouse_y - HEIGHT / 2.0) * f->zoom / HEIGHT;
 }
+
 
 void	hook(void *param)
 {
