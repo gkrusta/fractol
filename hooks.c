@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 12:21:51 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/23 23:10:44 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/24 11:32:16 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,23 +63,21 @@ void my_scrollhook(double xdelta, double ydelta, void *param)
     // Get the current mouse position
     mlx_get_mouse_pos(f->mlx, &mouse_x, &mouse_y);
 
-    // Ensure the mouse position is within valid range
-    if (mouse_x < 0 || mouse_x >= WIDTH || mouse_y < 0 || mouse_y >= HEIGHT)
-        return;
-
     // Calculate the movement of the fractal based on mouse position
     movex = (mouse_x - WIDTH / 2.0) * f->zoom / WIDTH;
     movey = (mouse_y - HEIGHT / 2.0) * f->zoom / HEIGHT;
 
     // Adjust the zoom factor
-    double zoom_factor = (ydelta > 0) ? 1.1 : 0.9;
-    f->zoom *= zoom_factor;
+	if (ydelta > 0)
+		f->zoom *= 1.1;
+	else if (ydelta < 0)
+		f->zoom /= 1.1;
 
     // Adjust the slide parameters based on the new zoom and mouse position
     f->slide_x += movex - (mouse_x - WIDTH / 2.0) * f->zoom / WIDTH;
     f->slide_y += movey - (mouse_y - HEIGHT / 2.0) * f->zoom / HEIGHT;
-}
 
+}
 
 /* 
 void	my_scrollhook(double xdelta, double ydelta, void *param)
@@ -105,8 +103,8 @@ void	my_scrollhook(double xdelta, double ydelta, void *param)
 	f->slide_x += movex - (mouse_x - WIDTH / 2.0) * f->zoom / WIDTH;
 	f->slide_y += movey - (mouse_y - HEIGHT / 2.0) * f->zoom / HEIGHT;
 } */
-/* 
-void my_scrollhook(double xdelta, double ydelta, void *param)
+
+/* void my_scrollhook(double xdelta, double ydelta, void *param)
 {
     t_fractol *f = (t_fractol *)param;
     int cursor_x, cursor_y;
@@ -126,8 +124,8 @@ void my_scrollhook(double xdelta, double ydelta, void *param)
 	printf("slide y  is %f and %f \n", f->slide_y, zoom_factor);
 
     f->zoom *= zoom_factor;
-}
- */
+} */
+
 
 void	hook(void *param)
 {

@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:19:14 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/21 18:32:29 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/24 12:52:39 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,28 @@ int	check_argv(const char *set)
 	else if (f->set == 3)
 		mandelbrot(f);
 } */
+
+void	chose_c_julia(const char *argv, t_fractol *f)
+{
+	int	c_julia;
+
+	c_julia = ft_atoi(argv);
+	if (c_julia == 4)
+	{
+		f->c_real = -0.57;
+		f->c_imag = -0.47;
+	}
+	else if (c_julia == 5)
+	{
+		f->c_real = 1.57;
+		f->c_imag = 1.47;
+	}
+	else if (c_julia == 6)
+	{
+		f->c_real = 0.77;
+		f->c_imag = -0.47;
+	}
+}
 
 char	*choose_set(int set)
 {

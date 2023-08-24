@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 12:45:05 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/23 23:03:03 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/24 12:49:38 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ void	ft_zoom(double x, double y, t_fractol *fractal);
 void	ft_dezoom(double x, double y, t_fractol *fractal);
 void	mouse_hook(int key_code, int x, int y, t_fractol *fractal);
 
+void	chose_c_julia(const char *argv, t_fractol *f);
 
 /* 
 void	zoom(t_fractol *fractol, int x, int y, int zoom);
