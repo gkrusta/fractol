@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:19:14 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/24 12:52:39 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/24 16:09:44 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,36 +23,18 @@ int	check_argv(const char *set)
 		return (0);
 }
 
-/* void	calculate_set(t_fractol *f)
+void	print_commands()
 {
-	if (f->set == 1)
-		mandelbrot(f);
-	else if (f->set == 2)
-		mandelbrot(f);
-	else if (f->set == 3)
-		mandelbrot(f);
-} */
-
-void	chose_c_julia(const char *argv, t_fractol *f)
-{
-	int	c_julia;
-
-	c_julia = ft_atoi(argv);
-	if (c_julia == 4)
-	{
-		f->c_real = -0.57;
-		f->c_imag = -0.47;
-	}
-	else if (c_julia == 5)
-	{
-		f->c_real = 1.57;
-		f->c_imag = 1.47;
-	}
-	else if (c_julia == 6)
-	{
-		f->c_real = 0.77;
-		f->c_imag = -0.47;
-	}
+	ft_printf("Fractal Visualization Program\n");
+	ft_printf("----------------------------\n");
+	ft_printf("Available commands:\n");
+	ft_printf("  - Arrow keys: Move the fractal\n");
+	ft_printf("  - Scroll wheel: Zoom in and out\n");
+	ft_printf("  - I/O keys: Increase/decrease zoom at the center only\n");
+	ft_printf("  - U/D keys: Increase/decrease iterations\n");
+	ft_printf("  - 1/2/3 keys: Change color set\n");
+	ft_printf("  - Space key: Reset to initial state\n");
+	ft_printf("  - Esc key: Quit the program\n");
 }
 
 char	*choose_set(int set)

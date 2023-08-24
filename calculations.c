@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 13:22:37 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/24 12:25:24 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/24 15:59:18 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,36 +16,16 @@
 For Mandelbrot and Burning ship the c will change depending where it is on the complex plane 
 determinating the count of the iterations later. */
 
-double calculate_real_part(t_fractol *f)
+/* double calculate_real_part(t_fractol *f)
 {
-	if (f->set == 2)
-	{
-		//f->z_real = (3.4 * f->x / (WIDTH - 1));
-		return (f->z_real = (f->x - WIDTH / 2.0) * f->zoom / WIDTH + f->slide_x);
-	}
-	else
-	{
-		//f->c_real = (3.7 * f->x / (WIDTH - 1));
-		return (f->z_real = (f->x - WIDTH / 2.0) * f->zoom / WIDTH + f->slide_x);
-	}
+	return ((f->x - WIDTH / 2.0) * f->zoom / WIDTH + f->slide_x);
 }
-
-/* 	f->z_re = (f->x - SIZE / 2.0) * f->zoom / SIZE + f->k;
-	f->z_im = (f->y - SIZE / 2.0) * f->zoom / SIZE + f->h; */
 
 double calculate_imag_part(t_fractol *f)
 {
-	if (f->set == 2)
-	{
-		//f->z_imag = (3.4 * f->y / (HEIGHT - 1));
-		return (f->z_imag = (f->y - HEIGHT / 2.0) * f->zoom / HEIGHT + f->slide_y);
-	}
-	else
-	{
-		//f->c_imag = (3.7 * f->y / (HEIGHT - 1)) ;
-		return (f->z_imag = (f->y - HEIGHT / 2.0) * f->zoom / HEIGHT + f->slide_y);
-	}
-}
+	return ((f->y - HEIGHT / 2.0) * f->zoom / HEIGHT + f->slide_y);
+} */
+
 /* 
 double	calculate_real_part(t_fractol *f)
 {
