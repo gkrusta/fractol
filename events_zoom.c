@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 16:24:16 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/25 16:25:12 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/25 16:33:45 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ void my_scrollhook(double xdelta, double ydelta, void *param)
 
 	(void)xdelta;
 	mlx_get_mouse_pos(f->mlx, &mouse_x, &mouse_y);
-	movex = (mouse_x - WIDTH / 2.0) * f->zoom ;
-	movey = (mouse_y - HEIGHT / 2.0) * f->zoom;
+	movex = (mouse_x - WIDTH / 2.0) * f->zoom / WIDTH;;
+	movey = (mouse_y - HEIGHT / 2.0) * f->zoom / HEIGHT;
 	if (ydelta > 0)
-		f->zoom *= 1.001;
+		f->zoom *= 1.1;
 	else if (ydelta < 0)
-		f->zoom /= 1.001;
+		f->zoom /= 1.1;
 	f->slide_x += movex - (mouse_x - WIDTH / 2.0) * f->zoom / WIDTH;
 	f->slide_y += movey - (mouse_y - HEIGHT / 2.0) * f->zoom / HEIGHT;
 }
