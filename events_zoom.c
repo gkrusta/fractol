@@ -1,0 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   events_zoom.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/25 16:24:16 by gkrusta           #+#    #+#             */
+/*   Updated: 2023/08/25 16:25:12 by gkrusta          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "fractol.h"
+
+void	zooming(t_fractol *f)
+{
+	if (mlx_is_key_down(f->mlx, MLX_KEY_I))
+		f->zoom /= 1.05;
+	if (mlx_is_key_down(f->mlx, MLX_KEY_O))
+		f->zoom *= 1.05;
+}
+
+void my_scrollhook(double xdelta, double ydelta, void *param)
+{
+	t_fractol *f = (t_fractol *)param;
+	int32_t mouse_x;
+	int32_t mouse_y;
+	double movex;
+	double movey;
+
+	(void)xdelta;
+	mlx_get_mouse_pos(f->mlx, &mouse_x, &mouse_y);
+	movex = (mouse_x - WIDTH / 2.0) * f->zoom ;
+	movey = (mouse_y - HEIGHT / 2.0) * f->zoom;
+	if (ydelta > 0)
+		f->zoom *= 1.001;
+	else if (ydelta < 0)
+		f->zoom /= 1.001;
+	f->slide_x += movex - (mouse_x - WIDTH / 2.0) * f->zoom / WIDTH;
+	f->slide_y += movey - (mouse_y - HEIGHT / 2.0) * f->zoom / HEIGHT;
+}

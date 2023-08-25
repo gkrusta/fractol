@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 10:01:09 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/24 15:59:11 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/25 16:21:42 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	fractol(t_fractol *f)
 				f->c_real = ((f->x - WIDTH / 2.0) * f->zoom / WIDTH + f->slide_x); // coresponding c number: c_real
 				f->c_imag = ((f->y - HEIGHT / 2.0) * f->zoom / HEIGHT + f->slide_y); // coresponding c number: c_imag * i
 			}
-			f->iter = ft_calculate_iter(f); // calculate iter 
+			f->iter = ft_calculate_iter(f);
 			color = calculate_color(f);
 			mlx_put_pixel(f->g_img, f->x, f->y, color);
 			f->x++;

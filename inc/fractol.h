@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 12:45:05 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/25 15:24:02 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/25 16:20:54 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 
 typedef struct s_fractol {
 	void		*mlx;
-	mlx_image_t	*g_img;
+	void		*g_img;
 	double		slide_x; // for arrows ;,)
 	double		slide_y;
 	int			set;
@@ -53,8 +53,6 @@ typedef struct s_fractol {
 	double		c_imag;
 	double		y;
 	double		x;
-	double		lim_x;
-	double		lim_y;
 	double		zoom;
 	int			iter;
 	int			max_iter;
@@ -82,9 +80,7 @@ int		ft_calculate_iter(t_fractol *f);
 
 /* set */
 int		check_argv(const char *set);
-/* void	calculate_set(t_fractol *f); */
 char	*choose_set(int set);
-
 
 /* hooks */
 void	hook(void *param);
@@ -99,24 +95,17 @@ double	calculate_imag_part(t_fractol *f);
 int	ft_calculate_iter(t_fractol *f);
 
 void	start_initialization(t_fractol *f);
-//void mouse_scroll_callback(int xdelta, int ydelta, void* param);
 void	zoom(t_fractol *fractal, int x, int y, int zoom);
 void my_scrollhook(double xdelta, double ydelta, void *param);
 
-
 void	zoom(t_fractol *fractal, int x, int y, int zoom);
-// void	mouse_hook(int mouse_code, int x, int y, t_fractol *fractal);
-
 
 void	ft_zoom(double x, double y, t_fractol *fractal);
 void	ft_dezoom(double x, double y, t_fractol *fractal);
 void	mouse_hook(int key_code, int x, int y, t_fractol *fractal);
 
 int		check_julia(int argc, char **argv, t_fractol *f);
-void	print_commands();
+void	print_commands(t_fractol *f);
+void	set_display(t_fractol *f);
 
-/* 
-void	zoom(t_fractol *fractol, int x, int y, int zoom);
-int			key_hook(int key_code, t_fractol *fractal);
-int			mouse_hook(int mouse_code, int x, int y, t_fractol *fractal); */
 #endif
