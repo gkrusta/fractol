@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 12:45:05 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/24 16:09:59 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/25 15:24:02 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,8 @@ uint32_t	calculate_color_pink(t_fractol *f);
 uint32_t	calculate_color_black(t_fractol *f);
 int			get_rgba(int r, int g, int b, int a);
 
-/* fractol sets */
+/* fractol set */
 void	fractol(t_fractol *f);
-/* void	julia(t_fractol *f);
-void	burning_ship(t_fractol *f); */
 
 /* calculations */
 double	calculate_real_part(t_fractol *f);
@@ -114,7 +112,7 @@ void	ft_zoom(double x, double y, t_fractol *fractal);
 void	ft_dezoom(double x, double y, t_fractol *fractal);
 void	mouse_hook(int key_code, int x, int y, t_fractol *fractal);
 
-void	chose_c_julia(t_fractol *f);
+int		check_julia(int argc, char **argv, t_fractol *f);
 void	print_commands();
 
 /* 

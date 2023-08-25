@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 12:21:51 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/24 17:02:48 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/25 15:56:38 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ void my_scrollhook(double xdelta, double ydelta, void *param)
 	movex = (mouse_x - WIDTH / 2.0) * f->zoom ;
 	movey = (mouse_y - HEIGHT / 2.0) * f->zoom;
 	if (ydelta > 0)
-		f->zoom *= 1.1;
+		f->zoom *= 1.001;
 	else if (ydelta < 0)
-		f->zoom /= 1.1;
+		f->zoom /= 1.001;
 	f->slide_x += movex - (mouse_x - WIDTH / 2.0) * f->zoom / WIDTH;
 	f->slide_y += movey - (mouse_y - HEIGHT / 2.0) * f->zoom / HEIGHT;
 }
@@ -107,6 +107,11 @@ void	hook(void *param)
 	if (mlx_is_key_down(f->mlx, MLX_KEY_SPACE))
 	{
 		start_initialization(f);
+		if (f->set == 2)
+		{
+			f->c_real = -0.57;
+			f->c_imag = -0.47;
+		}
 		fractol(f);
 	}
 	chose_c_julia(f);

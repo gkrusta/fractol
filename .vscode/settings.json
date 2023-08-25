@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "iterator": "c",
-        "algorithm": "c"
+        "algorithm": "c",
+        "stddef.h": "c"
     }
 }

@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:08:35 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/24 17:20:31 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/25 15:53:40 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void	start_initialization(t_fractol *f)
 {
+	if (f->set == 2 && isnan(f->c_real) && isnan(f->c_imag)) // if the constant hasn't been defined
+	{
+		f->c_real = -0.57;
+		f->c_imag = -0.47;
+	}
 	f->iter = 0;
 	f->max_iter = 24;
 	f->x = 0;
@@ -22,24 +27,45 @@ void	start_initialization(t_fractol *f)
 	f->slide_y = 0;
 	f->z_real = 0;
 	f->z_imag = 0;
-	f->c_real = 0;
-	f->c_imag = 0;
+	if (f->set == 1 || f->set == 3)
+	{
+		f->c_real = 0;
+		f->c_imag = 0;
+	}
 	f->zoom = 4.0;
 	f->color_set = 1;
 	f->r = 0;
 	f->g = 0;
 	f->b = 0;
-	if (f->set == 2) // in julia c is a chosen constant
-	{
-		f->c_real = -0.57;
-		f->c_imag = -0.47;
-	}
 }
 
 void   ft_leaks(void)
 {
     system("leaks -q fractol");
 }
+
+int	check_julia(int argc, char **argv, t_fractol *f)
+{
+	f->set = check_argv(argv[1]);
+	if (f->set == 2 && argc == 4)
+	{
+		f->c_real = atof(argv[2]);
+		f->c_imag = atof(argv[3]);
+		printf("c ral is %f and c imag is %f \n", f->c_real, f->c_imag);
+	}
+	else
+	{
+		ft_printf("  - Julia set requires 2 more arguments formated as a double int\n");
+		ft_printf("  - Execution example: ./fractol  1  -0.57  -0.47\n");
+		exit (1);
+	}
+	return (0);
+}
+
+/* void	julia_c_management(t_fractol *f)
+{
+	
+} */
 
 int	main(int argc, char **argv)
 {
@@ -49,7 +75,9 @@ int	main(int argc, char **argv)
 	f = malloc(sizeof(t_fractol));
 	if (argc == 2)
 		f->set = check_argv(argv[1]);
-	if ((f->set == 1 || f->set == 2 || f->set == 3) && argc == 2)
+	if (argc > 2)
+		check_julia(argc, argv, f);
+	if (f->set == 1 || f->set == 2 || f->set == 3)
 	{
 		print_commands();
 		start_initialization(f);

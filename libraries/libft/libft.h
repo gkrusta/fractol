@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:21:13 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/07/20 14:23:43 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/25 14:43:39 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,10 @@ char	*ft_clear_memory(char *str_ac);
 /* functions added for push_swap */
 long	ft_long_atoi(const char	*str);
 int		ft_strcmp(const char *s1, const char *s2);
+
+
+/* fucntion added for fractol */
+double ft_atof(const char *str);
+double	ft_helper(const char *s);
 
 #endif

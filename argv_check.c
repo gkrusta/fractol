@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:19:14 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/24 16:09:44 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/25 15:35:03 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ int	check_argv(const char *set)
 	selection = ft_atoi(set);
 	if (selection == 1 || selection == 2 || selection == 3)
 		return (selection);
+/* 	else if (selection == 2)
+	{
+		ft_printf("Julia set requires 2 more arguments formated as a double int./n");
+		ft_printf("Execution example: ./fractol  1  -0.57  -0.47");
+		return (1);
+	} */
 	else
 		return (0);
 }
