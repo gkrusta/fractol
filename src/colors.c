@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 09:58:00 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/26 18:07:16 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/26 18:09:50 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ uint32_t	calculate_color_default(t_fractol *f)
 	t = (double)f->iter / f->max_iter; // Calculate a value between 0 and 1
 	f->r = (int)(255 * (1 - t)); // Red component based on (1 - t)
 	f->g = (int)(255 * (1 - t)); // Green component based on (1 - t)
-	f->b = (int)(255); // Blue component based on t
+	f->b = (int)(255); // Blue component which is not changed
 	return (get_rgba(f->r, f->g, f->b, 255));
 }
 
