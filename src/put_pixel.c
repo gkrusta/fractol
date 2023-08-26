@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 10:01:09 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/26 17:01:45 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/26 18:05:03 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	ft_display(t_fractol *f)
 		{
 			if (f->set == 2)
 			{
-				f->z_real = ((f->x - WIDTH / 2.0) * f->zoom / WIDTH + f->slide_x); // coresponding c number: c_real
-				f->z_imag = ((f->y - HEIGHT / 2.0) * f->zoom / HEIGHT + f->slide_y); // coresponding c number: c_imag * i
+				f->z_real = ((f->x - WIDTH / 2.0) * f->zoom / WIDTH + f->slide_x);
+				f->z_imag = ((f->y - HEIGHT / 2.0) * f->zoom / HEIGHT + f->slide_y);
 			}
 			else
 			{
-				f->c_real = ((f->x - WIDTH / 2.0) * f->zoom / WIDTH + f->slide_x); // coresponding c number: c_real
-				f->c_imag = ((f->y - HEIGHT / 2.0) * f->zoom / HEIGHT + f->slide_y); // coresponding c number: c_imag * i
+				f->c_real = ((f->x - WIDTH / 2.0) * f->zoom / WIDTH + f->slide_x);
+				f->c_imag = ((f->y - HEIGHT / 2.0) * f->zoom / HEIGHT + f->slide_y);
 			}
 			f->iter = fractol(f);
 			color = calculate_color(f);
