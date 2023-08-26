@@ -6,7 +6,7 @@
 #    By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/29 12:00:43 by gkrusta           #+#    #+#              #
-#    Updated: 2023/08/26 16:52:48 by gkrusta          ###   ########.fr        #
+#    Updated: 2023/08/26 17:47:37 by gkrusta          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ HEADERS = -I ./inc -I ./libraries/MLX42/include/MLX42 -I ./libraries/libft
 MLX42_PATH = libraries/MLX42/
 MLX42 = $(MLX42_PATH)/libmlx42.a
 
-SRCS =  $(wildcard *.c)
+SRCS =  $(wildcard src/*.c)
 
 OBJS = $(SRCS:.c=.o)
 
