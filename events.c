@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 12:21:51 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/25 16:25:10 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/26 17:04:36 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	hook(void *param)
 			f->c_real = -0.57;
 			f->c_imag = -0.47;
 		}
-		fractol(f);
+		ft_display(f);
 	}
 	chose_c_julia(f);
 	move_with_arrows(f);
@@ -92,5 +92,5 @@ void	hook(void *param)
 	change_iterations(f);
 	mlx_scroll_hook(f->mlx, &my_scrollhook, f);
 	zooming(f);
-	fractol(f);
+	ft_display(f);
 }

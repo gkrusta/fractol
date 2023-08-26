@@ -6,7 +6,7 @@
 #    By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/29 12:00:43 by gkrusta           #+#    #+#              #
-#    Updated: 2023/08/24 17:18:43 by gkrusta          ###   ########.fr        #
+#    Updated: 2023/08/26 16:52:48 by gkrusta          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,6 @@ MLX42 = $(MLX42_PATH)/libmlx42.a
 SRCS =  $(wildcard *.c)
 
 OBJS = $(SRCS:.c=.o)
-
-# default: all
-#	@ echo "\033[32mExecuted Fractol...\n"
-#	@ ./fractol
 
 all: $(LIBFT) $(MLX42) $(NAME) 
 

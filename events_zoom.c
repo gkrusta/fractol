@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 16:24:16 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/25 16:33:45 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/26 16:51:35 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ void my_scrollhook(double xdelta, double ydelta, void *param)
 	double movey;
 
 	(void)xdelta;
+	// Get the current mouse position
 	mlx_get_mouse_pos(f->mlx, &mouse_x, &mouse_y);
-	movex = (mouse_x - WIDTH / 2.0) * f->zoom / WIDTH;;
+	// Calculate how much the mouse movement affects the fractal position
+	movex = (mouse_x - WIDTH / 2.0) * f->zoom / WIDTH;
 	movey = (mouse_y - HEIGHT / 2.0) * f->zoom / HEIGHT;
 	if (ydelta > 0)
 		f->zoom *= 1.1;

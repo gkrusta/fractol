@@ -6,7 +6,7 @@
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 11:19:14 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/25 16:26:45 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/26 17:40:40 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	start_initialization(t_fractol *f)
 {
-	if (f->set == 2 && !(f->c_real)) // if the constant hasn't been defined
+	if (f->set == 2 && !(f->c_imag)) // if the constant hasn't been defined
 	{
 		f->c_real = -0.57;
 		f->c_imag = -0.47;
@@ -47,7 +47,13 @@ int	check_argv(const char *set)
 	if (selection == 1 || selection == 2 || selection == 3)
 		return (selection);
 	else
-		return (0);
+	{
+		ft_printf("  Chose one of the following numbers:\n");
+		ft_printf("  - 1 to show Mandelbrot\n");
+		ft_printf("  - 2 to show Julia\n");
+		ft_printf("  - 3 to show Burning ship\n");
+	}
+	return (0);
 }
 
 char	*choose_set(int set)
@@ -73,7 +79,7 @@ int	check_julia(int argc, char **argv, t_fractol *f)
 	else
 	{
 		ft_printf("  - Julia set requires 2 more arguments formated as a double int\n");
-		ft_printf("  - Execution example: ./fractol  1  -0.57  -0.47\n");
+		ft_printf("  - Execution example: ./fractol  2  -0.57  -0.47\n");
 		exit (1);
 	}
 	return (0);

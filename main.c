@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gkrusta <gkrusta@student.42malaga.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:08:35 by gkrusta           #+#    #+#             */
-/*   Updated: 2023/08/25 16:26:39 by gkrusta          ###   ########.fr       */
+/*   Updated: 2023/08/26 17:43:29 by gkrusta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void   ft_leaks(void)
-{
-    system("leaks -q fractol");
-}
-
 void	set_display(t_fractol *f)
 {
 	print_commands(f);
 	start_initialization(f);
-	f->mlx = mlx_init(WIDTH, HEIGHT, choose_set(f->set), true);
+	f->mlx = mlx_init(WIDTH, HEIGHT, choose_set(f->set), false);
 	if (!f->mlx)
 		exit(EXIT_FAILURE);
 	f->g_img = mlx_new_image(f->mlx, WIDTH, HEIGHT);
 	if (!f->g_img)
 		exit(EXIT_FAILURE);
-	fractol(f);
+	ft_display(f);
 	mlx_image_to_window(f->mlx, f->g_img, 0, 0);
 	mlx_loop_hook(f->mlx, &hook, f);
 	mlx_loop(f->mlx);
@@ -37,7 +32,6 @@ void	set_display(t_fractol *f)
 
 int	main(int argc, char **argv)
 {
-	atexit(ft_leaks); 
 	t_fractol	*f;
 
 	f = malloc(sizeof(t_fractol));
