@@ -59,6 +59,25 @@ Use the following keyboard commands to interact with the program:
 
 ./fractol 3
 
+
+## Images
+
+### Mandelbrot Set Zoomed
+![Mandelbrot Set](images/Mandelrbot_1.png)
+
+### Mandelbrot Set
+![Mandelbrot Set](images/Mandelrbot_2.png)
+
+### Julia Set
+![Julia Set](images/Julia_1.png)
+
+### Customized Julia Set
+![Customized Julia Set](images/Mandelrbot_2.png)
+
+### Burning Ship Set
+![Burning Ship Set](images/Burning_ship.png)
+
+
 ## Stuff and sources I used
 
 - Video which explains the concept of complex numbers on a coordinate plane and Mandelbrot set:
