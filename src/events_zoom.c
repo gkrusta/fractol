@@ -22,12 +22,13 @@ void	zooming(t_fractol *f)
 
 void my_scrollhook(double xdelta, double ydelta, void *param)
 {
-	t_fractol *f = (t_fractol *)param;
+	t_fractol *f;
 	int32_t mouse_x;
 	int32_t mouse_y;
 	double movex;
 	double movey;
 
+	f = (t_fractol *)param;
 	(void)xdelta;
 	// Get the current mouse position
 	mlx_get_mouse_pos(f->mlx, &mouse_x, &mouse_y);
