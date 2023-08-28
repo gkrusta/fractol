@@ -14,11 +14,6 @@
 
 void	start_initialization(t_fractol *f)
 {
-	if (f->set == 2 && !(f->c_imag)) // if the constant hasn't been defined
-	{
-		f->c_real = -0.57;
-		f->c_imag = -0.47;
-	}
 	f->iter = 0;
 	f->max_iter = 24;
 	f->x = 0;
