@@ -37,7 +37,8 @@ void	start_initialization(t_fractol *f)
 int	check_argv(const char *set)
 {
 	int	selection;
-
+	if (!set)
+		return (0);
 	selection = ft_atoi(set);
 	if (selection == 1 || selection == 2 || selection == 3)
 		return (selection);
