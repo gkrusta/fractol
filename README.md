@@ -63,16 +63,16 @@ Use the following keyboard commands to interact with the program:
 ## Images
 
 ### Mandelbrot Set Zoomed
-![Mandelbrot Set](images/Mandelrbot_1.png)
+![Mandelbrot Set](images/Mandelbrot_1.png)
 
 ### Mandelbrot Set
-![Mandelbrot Set](images/Mandelrbot_2.png)
+![Mandelbrot Set](images/Mandelbrot_2.png)
 
 ### Julia Set
 ![Julia Set](images/Julia_1.png)
 
 ### Customized Julia Set
-![Customized Julia Set](images/Mandelrbot_2.png)
+![Customized Julia Set](images/Julia_2.png)
 
 ### Burning Ship Set
 ![Burning Ship Set](images/Burning_ship.png)
