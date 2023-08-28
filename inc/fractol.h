@@ -24,8 +24,8 @@
 # include <stddef.h>
 # include <math.h>
 
-#define WIDTH 900
-#define HEIGHT 900
+# define WIDTH 900
+# define HEIGHT 900
 
 typedef struct s_fractol {
 	void		*mlx;
@@ -49,7 +49,6 @@ typedef struct s_fractol {
 	int			b;
 }				t_fractol;
 
-
 /* sets color based on number of iterations */
 uint32_t	calculate_color(t_fractol *f);
 uint32_t	calculate_color_default(t_fractol *f);
@@ -57,32 +56,25 @@ uint32_t	calculate_color_pink(t_fractol *f);
 uint32_t	calculate_color_black(t_fractol *f);
 int			get_rgba(int r, int g, int b, int a);
 
-/* fractol set */
-int		fractol(t_fractol *f);
-
-/* calculations */
-
+/* fractol set and calculations*/
+void		set_display(t_fractol *f);
+int			fractol(t_fractol *f);
 void		ft_display(t_fractol *f);
 
-/* set */
+/* utils */
 int			check_argv(const char *set);
 char		*choose_set(int set);
+void		start_initialization(t_fractol *f);
+void		print_commands(t_fractol *f);
+int			check_julia(int argc, char **argv, t_fractol *f);
 
 /* hooks */
 void		hook(void *param);
+void		my_scrollhook(double xdelta, double ydelta, void *param);
 void		move_with_arrows(t_fractol *f);
 void		change_color(t_fractol *f);
 void		change_iterations(t_fractol *f);
 void		zooming(t_fractol *f);
-
-/* calcualtions */
-
-void		start_initialization(t_fractol *f);
-void		zoom(t_fractol *fractal, int x, int y, int zoom);
-void		my_scrollhook(double xdelta, double ydelta, void *param);
-
-int			check_julia(int argc, char **argv, t_fractol *f);
-void		print_commands(t_fractol *f);
-void		set_display(t_fractol *f);
+void		chose_c_julia(t_fractol *f);
 
 #endif
