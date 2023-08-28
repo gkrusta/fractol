@@ -14,10 +14,10 @@
 
 double	ft_helper(const char *s)
 {
-	double fraction ;
+	double	fraction;
 	double	number;
-	int decimal_seen;
-	int	i;
+	int		decimal_seen;
+	int		i;
 
 	fraction = 1.0;
 	decimal_seen = 0;
@@ -41,13 +41,15 @@ double	ft_helper(const char *s)
 	return (number);
 }
 
-double ft_atof(const char *s)
+double	ft_atof(const char *s)
 {
-	int i = 0;
-	int sign = 1;
-	double number = 0.0;
+	int		i;
+	int		sign;
+	double	number;
 
 	i = 0;
+	sign = 1;
+	number = 0.0;
 	while (s[i] == 32 || (s[i] >= 9 && s[i] <= 13))
 		i++;
 	if ((s[i] == '+' || s[i] == '-') && (s[i + 1] >= '0' && s[i + 1] <= '9'))
@@ -56,8 +58,7 @@ double ft_atof(const char *s)
 			sign = -1;
 		i++;
 	}
-		number = ft_helper(&s[i]);
-
+	number = ft_helper(&s[i]);
 	return (sign * number);
 }
 
