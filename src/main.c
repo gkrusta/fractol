@@ -35,14 +35,11 @@ int	main(int argc, char **argv)
 	t_fractol	*f;
 
 	f = malloc(sizeof(t_fractol));
-	if (argc == 2)
+	f->set = check_argv(argv[1]);
+	if (argc == 2 && f->set == 2)
 	{
-		f->set = check_argv(argv[1]);
-		if (f->set == 2)
-		{
-			f->c_real = -0.57;
-			f->c_imag = -0.47;
-		}
+		f->c_real = -0.57;
+		f->c_imag = -0.47;
 	}
 	else if (argc > 2)
 		check_julia(argc, argv, f);
